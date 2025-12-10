@@ -1,0 +1,5 @@
+[00:00:01.213] Server  LOG      ✓ Ready in 903ms
+[00:00:03.791] Server  ERROR    ⨯ TypeError: useRef only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+[00:00:04.272] Browser ERROR   uncaughtError: TypeError: useRef only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+[00:00:49.470] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:00:49.702] Server  LOG      ✓ Compiled in 2ms

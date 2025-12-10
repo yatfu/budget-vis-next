@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/App.css"],"sourcesContent":["#root {\n  text-align: center;\n  width: 100vw;\n  max-width: 1280px;\n  margin: 0 auto;\n}\n\n#root div {\n    border-style: solid;\n}\n\n#income-expenses-section { \n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n}\n"],"names":[],"mappings":"AAAA;;;;;;;AAOA;;;;AAIA"}}]
+}

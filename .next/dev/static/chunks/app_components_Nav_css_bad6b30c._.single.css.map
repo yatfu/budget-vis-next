@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/components/Nav.css"],"sourcesContent":[".nav {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\n.nav button {\n    display: flex;\n    align-items: center;\n    margin: 0 auto;\n}"],"names":[],"mappings":"AAAA;;;;;;AAMA"}}]
+}
