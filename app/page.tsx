@@ -1,6 +1,4 @@
 "use client";
-import './App.css'
-import './components/IncomeExpenses.css'
 import Nav from './components/Nav'
 import Expenses from './components/Expenses'
 import Ratio from './components/Ratio'

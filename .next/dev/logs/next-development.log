@@ -3,3 +3,1914 @@
 [00:00:04.272] Browser ERROR   uncaughtError: TypeError: useRef only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
 [00:00:49.470] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
 [00:00:49.702] Server  LOG      ✓ Compiled in 2ms
+[152:24:52.915] Browser LOG     Submitted expenses: [{"name":"Housing/Rent","value":"3000"},{"name":"Utilities","value":"500"},{"name":"Food","value":"1000"},{"name":"Other","value":"500"},{"name":"Gooning","value":1000}]
+[152:26:52.137] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.137] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.138] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.139] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.140] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.140] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.143] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.146] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.147] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.147] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.148] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.148] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.149] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.150] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.151] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.151] Server  ERROR    ⨯ ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:26:52.166] Server  LOG      ✓ Compiled in 174ms
+[152:26:52.396] Browser ERROR   ./app/components/Nav.jsx:2:1
+Module not found: Can't resolve './Nav.css'
+  1 | import React from 'react';
+> 2 | import './Nav.css';
+    | ^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | function Nav() {
+  5 |   return (
+
+Import traces:
+  Client Component Browser:
+    ./app/components/Nav.jsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/Nav.jsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:27:09.406] Server  LOG      ✓ Compiled in 21ms
+[152:27:32.338] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.339] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.342] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.344] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.345] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.346] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.347] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.348] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.349] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.350] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.351] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.352] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.353] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.353] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.356] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.356] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:32.432] Server  LOG      ✓ Compiled in 25ms
+[152:27:32.511] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:27:50.883] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.885] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.885] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.886] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.887] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.888] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.889] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.890] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.891] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.892] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.893] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.893] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.895] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.896] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.897] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.897] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.898] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.900] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.900] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.901] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.902] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.903] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.903] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.904] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.905] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.906] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.907] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.907] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.908] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.911] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.912] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.913] Server  ERROR    ⨯ ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:27:50.918] Server  LOG      ✓ Compiled in 24ms
+[152:27:51.025] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:27:51.025] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:27:59.978] Server  ERROR    ⨯ ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:28:00.103] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:00.103] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:00.817] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:00.817] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:00.817] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:00.817] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.146] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.146] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.328] Browser ERROR   uncaughtError: Error: ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[152:28:01.444] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.444] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.546] Browser ERROR   ./app/page.tsx:2:1
+Module not found: Can't resolve './App.css'
+  1 | "use client";
+> 2 | import './App.css'
+    | ^^^^^^^^^^^^^^^^^^
+  3 | import './components/IncomeExpenses.css'
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[152:28:01.546] Browser ERROR   ./app/page.tsx:3:1
+Module not found: Can't resolve './components/IncomeExpenses.css'
+  1 | "use client";
+  2 | import './App.css'
+> 3 | import './components/IncomeExpenses.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Nav from './components/Nav'
+  5 | import Expenses from './components/Expenses'
+  6 | import Ratio from './components/Ratio'
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[166:18:25.357] Server  LOG      ✓ Compiled in 66ms
+[166:18:34.833] Server  LOG      ✓ Compiled in 16ms

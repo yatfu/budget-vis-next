@@ -1,6 +1,7 @@
 /* [project]/app/globals.css [app-client] (css) */
 @layer theme {
   :root, :host {
+    --color-white: #fff;
     --default-font-family: var(--font-geist-sans);
     --default-mono-font-family: var(--font-geist-mono);
   }
@@ -287,6 +288,10 @@
     .container {
       max-width: 96rem;
     }
+  }
+
+  .bg-white {
+    background-color: var(--color-white);
   }
 
   .antialiased {
