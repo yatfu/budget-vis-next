@@ -11,7 +11,7 @@ const Income = () => {
   ]);
 
   return (
-    <div className="income">
+    <div className="">
             <IncomeExpensesForm categories={categories} setCategories={setCategories} />
       <IncomeExpensesChart title={"Income"}
         labels={categories.map(category => category.name)} 

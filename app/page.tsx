@@ -1,6 +1,7 @@
 "use client";
 import Nav from './components/Nav'
 import Expenses from './components/Expenses'
+import Income from './components/Income'
 import Ratio from './components/Ratio'
 
 {/*import ExpensesChart from './components/ExpensesChart'
@@ -11,9 +12,10 @@ function App() {
   return (
     <>
       <Nav></Nav>
-      <div id="income-expenses-section">
+      <div className="grid grid-cols-2 grid-rows-2">
+        <Income />
+        <div className=""><Ratio /></div>
         <Expenses />
-        <Ratio />
       </div>
       
     </>
