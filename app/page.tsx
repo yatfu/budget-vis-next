@@ -1,21 +1,31 @@
 "use client";
+import { useState } from "react";
 import Nav from './components/Nav'
 import Expenses from './components/Expenses'
 import Income from './components/Income'
 import Ratio from './components/Ratio'
 
-{/*import ExpensesChart from './components/ExpensesChart'
-import ExpensesForm from './components/ExpensesForm'*/}
-
 function App() {
+  /* page has two tabs
+       one to crud data of budget per month
+       one to display data of all months */
+  const [currentTab, setCurrentTab] = useState("month");
 
   return (
     <>
-      <Nav></Nav>
-      <div className="grid grid-cols-2 grid-rows-2">
-        <Income />
-        <div className=""><Ratio /></div>
-        <Expenses />
+      <Nav />
+      <button onClick={() => setCurrentTab("month")}>Monthly</button>
+      <button onClick={() => setCurrentTab("records")}>Yearly</button>
+      <div className="">
+        {currentTab === "month" && 
+          <div>
+            <h2>Expenses</h2>
+            <Expenses />
+            <h2>Income</h2>
+            <Income />
+        </div>
+        }
+        {currentTab === "records" && <div className=""><Ratio /></div>}
       </div>
       
     </>

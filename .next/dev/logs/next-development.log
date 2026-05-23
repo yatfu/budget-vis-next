@@ -1,63 +1,62 @@
-[00:00:03.100] Server  LOG      ✓ Ready in 2.6s
-[00:00:47.065] Server  LOG      ✓ Compiled in 31ms
-[00:01:36.747] Server  LOG      ✓ Compiled in 12ms
-[00:02:13.997] Server  LOG      ✓ Compiled in 22ms
-[00:02:54.175] Server  LOG      ✓ Compiled in 12ms
-[00:04:12.305] Server  LOG      ✓ Compiled in 20ms
-[00:04:18.123] Server  LOG      ✓ Compiled in 27ms
-[00:04:23.951] Server  LOG      ✓ Compiled in 18ms
-[00:04:53.954] Server  LOG      ✓ Compiled in 33ms
-[00:05:00.140] Server  LOG      ✓ Compiled in 16ms
-[00:08:00.207] Server  LOG      ✓ Compiled in 16ms
-[00:08:05.606] Server  LOG      ✓ Compiled in 18ms
-[00:08:33.565] Server  LOG      ✓ Compiled in 19ms
-[00:09:53.183] Server  LOG      ✓ Compiled in 20ms
-[00:10:37.005] Server  LOG      ✓ Compiled in 42ms
-[00:11:04.208] Server  LOG      ✓ Compiled in 30ms
-[00:11:09.789] Server  LOG      ✓ Compiled in 32ms
-[00:11:48.264] Server  LOG      ✓ Compiled in 15ms
-[00:12:27.521] Server  LOG      ✓ Compiled in 20ms
-[00:13:16.667] Server  LOG      ✓ Compiled in 19ms
-[00:13:56.476] Server  LOG      ✓ Compiled in 13ms
-[00:15:00.164] Server  LOG      ✓ Compiled in 17ms
-[00:15:08.390] Server  LOG      ✓ Compiled in 11ms
-[00:15:17.525] Server  LOG      ✓ Compiled in 12ms
-[00:15:20.862] Server  LOG      ✓ Compiled in 11ms
-[00:16:19.435] Server  LOG      ✓ Compiled in 11ms
-[00:16:35.333] Server  LOG      ✓ Compiled in 12ms
-[00:16:43.195] Server  LOG      ✓ Compiled in 12ms
-[00:16:43.298] Browser ERROR   ./app/components/Nav.jsx:6:26
+[00:00:03.389] Server  LOG      ✓ Ready in 2.9s
+[00:31:28.338] Server  LOG      ✓ Compiled in 16ms
+[00:33:55.629] Server  LOG      ✓ Compiled in 22ms
+[00:33:56.546] Browser ERROR   uncaughtError: TypeError: (0 , __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__.default) is not a function or its return value is not iterable
+[00:34:34.388] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:34:34.507] Server  LOG      ✓ Compiled in 13ms
+[00:42:23.833] Server  LOG      ✓ Compiled in 17ms
+[47:53:10.383] Server  LOG      ✓ Compiled in 195ms
+[47:53:36.054] Server  LOG      ✓ Compiled in 23ms
+[47:53:59.144] Server  LOG      ✓ Compiled in 20ms
+[47:55:12.671] Server  LOG      ✓ Compiled in 15ms
+[47:55:28.964] Server  LOG      ✓ Compiled in 14ms
+[47:56:49.219] Server  LOG      ✓ Compiled in 22ms
+[47:57:04.336] Server  LOG      ✓ Compiled in 43ms
+[47:57:30.510] Server  LOG      ✓ Compiled in 65ms
+[48:08:09.810] Server  LOG      ✓ Compiled in 30ms
+[48:08:10.200] Browser ERROR   ./app/page.tsx:23:9
 Parsing ecmascript source code failed
-  4 |   return (
-  5 |     <div className="nav py-3 flex >
-> 6 |       <button className="">Sign In not implemented</button>
-    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 |     </div>
-  8 |   );
-  9 | }
+  21 |         {activeTab === month && 
+  22 |         
+> 23 |         }
+     |         ^
+  24 |
+  25 |         <div>
+  26 |           <h2>Income</h2>
 
-Unterminated string constant
+Expected '</', got '}'
 
 Import traces:
   Client Component Browser:
-    ./app/components/Nav.jsx [Client Component Browser]
     ./app/page.tsx [Client Component Browser]
     ./app/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/components/Nav.jsx [Client Component SSR]
     ./app/page.tsx [Client Component SSR]
     ./app/page.tsx [Server Component]
-[00:16:46.500] Server  LOG      ✓ Compiled in 10ms
-[00:16:52.182] Server  LOG      ✓ Compiled in 11ms
-[00:16:54.882] Server  LOG      ✓ Compiled in 14ms
-[00:17:06.222] Server  LOG      ✓ Compiled in 12ms
-[00:17:09.073] Server  LOG      ✓ Compiled in 37ms
-[00:18:31.047] Server  LOG      ✓ Compiled in 19ms
-[00:18:41.668] Server  LOG      ✓ Compiled in 17ms
-[00:18:46.618] Server  LOG      ✓ Compiled in 10ms
-[00:18:55.651] Server  LOG      ✓ Compiled in 13ms
-[00:18:57.669] Server  LOG      ✓ Compiled in 12ms
-[00:19:08.929] Server  LOG      ✓ Compiled in 10ms
-[00:19:20.941] Server  LOG      ✓ Compiled in 12ms
-[00:20:49.736] Server  LOG      ✓ Compiled in 12ms
+[48:08:25.000] Browser ERROR   uncaughtError: ReferenceError: activeTab is not defined
+[48:08:41.172] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[48:08:41.293] Server  LOG      ✓ Compiled in 14ms
+[48:08:41.389] Server  ERROR    ⨯ ReferenceError: activeTab is not defined
+[48:08:41.413] Browser ERROR   uncaughtError: ReferenceError: activeTab is not defined
+[48:08:42.034] Browser ERROR   uncaughtError: ReferenceError: activeTab is not defined
+[48:09:03.004] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[48:09:03.098] Server  LOG      ✓ Compiled in 14ms
+[48:09:03.151] Server  ERROR    ⨯ ReferenceError: activeTab is not defined
+[48:09:03.491] Browser ERROR   uncaughtError: ReferenceError: activeTab is not defined
+[48:09:28.716] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[48:09:28.820] Server  LOG      ✓ Compiled in 12ms
+[48:09:28.884] Server  ERROR    ⨯ ReferenceError: activeTab is not defined
+[48:09:29.222] Browser ERROR   uncaughtError: ReferenceError: activeTab is not defined
+[48:10:10.986] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[48:10:11.080] Server  LOG      ✓ Compiled in 14ms
+[48:10:31.577] Server  LOG      ✓ Compiled in 14ms
+[48:10:49.832] Server  LOG      ✓ Compiled in 13ms
+[48:11:17.192] Server  LOG      ✓ Compiled in 19ms
+[48:16:30.258] Server  LOG      ✓ Compiled in 13ms
+[48:16:42.767] Browser LOG     Submitted expenses: [{"name":"Paycheck 1","value":"3000"},{"name":"Paycheck 2","value":"2900"}]
+[48:18:34.753] Server  LOG      ✓ Compiled in 15ms
+[49:08:31.641] Browser LOG     Submitted expenses: [{"name":"Housing/Rent","value":"3000"},{"name":"Utilities","value":"500"},{"name":"Food","value":"1000"},{"name":"Other","value":500}]
+[49:08:32.706] Browser LOG     Submitted expenses: [{"name":"Housing/Rent","value":"3000"},{"name":"Utilities","value":"500"},{"name":"Food","value":"1000"},{"name":"Other","value":500}]
+[49:08:42.739] Browser ERROR   Received NaN for the `%s` attribute. If this is expected, cast the value to a string. value
+[49:08:44.909] Browser LOG     Submitted expenses: [{"name":"Housing/Rent","value":"3000"},{"name":"Utilities","value":"500"},{"name":"Food","value":"1000"},{"name":"Other","value":500},{"name":"NIKKE Skins","value":6000}]

@@ -23,7 +23,6 @@ const IncomeExpensesForm = ({categories, setCategories}) => { // { PROPS }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Monthly Expenses</h2>
 
       {categories.map((cat, index) => (
         <div key={index}>
