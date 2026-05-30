@@ -1,5 +1,4 @@
-next, supabase
-
+UI BRAINSTORM -----
 
 
 NOTES -----

@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///Users/yatfu/Documents/GitHub/budget-vis-next/app/App.css"],"sourcesContent":["#root {\n  text-align: center;\n  width: 100vw;\n  max-width: 1280px;\n  margin: 0 auto;\n}\n\n#root div {\n    border-style: solid;\n}\n\n#income-expenses-section { \n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n}\n"],"names":[],"mappings":"AAAA;;;;;;;AAOA;;;;AAIA"}},
-    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":["file:///Users/yatfu/Documents/GitHub/budget-vis-next/app/components/IncomeExpenses.css"],"sourcesContent":[".income-expenses-chart {\n  width: 100%;\n  height: auto;\n}\n\n.income-expenses-form-buttons {\n    display: flex;\n}\n\n.income {\n  grid-column: 1;\n  grid-row: 1;\n  display: flex;\n}\n\n.expenses {\n  grid-column: 1;\n  grid-row: 2;\n  display: flex;\n}\n\n.ratio {\n  grid-column: 2;\n  grid-row: 1 / span 2;\n}\n\n\ncanvas {\n  max-width: 100%;\n  max-height: 100%;\n}"],"names":[],"mappings":"AAAA;;;;;AAKA;;;;AAIA;;;;;AAMA;;;;;AAMA;;;;AAMA"}},
-    {"offset": {"line": 48, "column": 0}, "map": {"version":3,"sources":["file:///Users/yatfu/Documents/GitHub/budget-vis-next/app/components/Nav.css"],"sourcesContent":[".nav {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\n.nav button {\n    display: flex;\n    align-items: center;\n    margin: 0 auto;\n}"],"names":[],"mappings":"AAAA;;;;;;AAMA"}}]
-}
