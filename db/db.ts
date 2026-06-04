@@ -26,3 +26,8 @@ if (process.env.NODE_ENV !== "production") { // only need this feature in dev mo
   global.pgPool = pool;
 }
 
+export async function testDb() {
+  const result = await pool.query("SELECT NOW()");
+  return result.rows[0];
+}
+
