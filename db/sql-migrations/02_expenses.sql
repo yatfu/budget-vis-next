@@ -1,4 +1,4 @@
-CREATE TABLE expenses (
+CREATE TABLE IF NOT EXISTS expenses (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users(id),
   label VARCHAR(100) NOT NULL CHECK (length(label) > 0),
