@@ -37,6 +37,22 @@ Prisma converts to SQL
       ↓
 Neon/Postgres executes query
 
+CRUD Operations: 
+CREATE (POST, INSERT)
+  User: create user given username and password
+  Expenses: create expense category
+READ (GET, SELECT)
+  read one user given username and password, read all expenses
+UPDATE (PUT, UPDATE)
+  update one user, update one expense
+DELETE (DELETE, DELETE)
+  delete one User, delete one/multiple expenses
+
+
+
+
+
+
 turned away from prisma because of an issue with turbopack, unstable and unreliable
 
 Your app is failing at this line:
