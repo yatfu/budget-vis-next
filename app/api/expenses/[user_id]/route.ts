@@ -1,5 +1,5 @@
 import { pool } from '@db/db';
-import { GET } from '../route';
+
 /**
  * SAVE FUNCTION
  * gets old data through api request
@@ -26,7 +26,9 @@ ID 5 updated (label changed)
 export async function save(request: Request, { params }) {
     // get old data
     const userId = params.user_id;
-    const oldExpenses = await GET(userId);
+    const [oldExpenses] = await pool.query(
+    'SELECT * FROM expenses WHERE user_id = ?',
+    [userId]);
 
     // convert to maps for comparison
     // searching with key in map is constant time vs linear array search
@@ -45,13 +47,15 @@ export async function save(request: Request, { params }) {
     }
     for (const [id, newExpense] of newMap) { // updates
         const oldExpense = oldMap.get(id);
-        if (oldExpense && oldExpense !== newExpense) {
+        if (
+        oldExpense && 
+        JSON.stringify(oldExpense) !== JSON.stringify(newExpense)) { // cannot use !== because it compares references
             updates.push(newExpense);
         }
     }
-    for (const [id, expense] of oldMap) { // deletes
+    for (const [id] of oldMap) { // deletes
         if (!newMap.has(id)) {
-            deletes.push(expense);
+            deletes.push(id);
         }
     }
     // generate SQL using modified expenses
