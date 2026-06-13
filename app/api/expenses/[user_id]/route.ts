@@ -35,20 +35,21 @@ export async function save(request: Request, { params }) {
 
     // generate arrays of modified expenses through comparison
     let inserts = [];
-    for (const [id, expense] of newMap) {
+    let updates = [];
+    let deletes = [];
+
+    for (const [id, expense] of newMap) { // inserts
         if (!oldMap.has(id)) {
             inserts.push(expense);
         }
     }
-    let updates = [];
-    for (const [id, newExpense] of newMap) {
+    for (const [id, newExpense] of newMap) { // updates
         const oldExpense = oldMap.get(id);
         if (oldExpense && oldExpense !== newExpense) {
             updates.push(newExpense);
         }
     }
-    let deletes = [];
-    for (const [id, expense] of oldMap) {
+    for (const [id, expense] of oldMap) { // deletes
         if (!newMap.has(id)) {
             deletes.push(expense);
         }
