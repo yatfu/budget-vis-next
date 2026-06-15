@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-const IncomeExpensesForm = ({categories, setCategories}) => { // { PROPS }
+import React, { useState } from "react";
+const ExpensesForm = ({ categories, setCategories }) => {
+  // { PROPS }
 
   const handleChange = (index, field, value) => {
     const newCategories = [...categories];
@@ -8,30 +9,31 @@ const IncomeExpensesForm = ({categories, setCategories}) => { // { PROPS }
   };
 
   const addCategory = () => {
-    setCategories([...categories, { name: '', value: 1000 }]);
+    setCategories([...categories, { name: "New Expense", value: 1000 }]);
   };
 
   const deleteCategory = (indexToRemove) => {
-    const newCategories = categories.filter((element, index, array) => index !== indexToRemove);
+    const newCategories = categories.filter(
+      (element, index, array) => index !== indexToRemove
+    );
     setCategories(newCategories);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted expenses:', categories);
+    console.log("Submitted expenses:", categories);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-
       {categories.map((cat, index) => (
         <div key={index}>
           <input
             type="text"
             placeholder="Category Name"
             value={cat.name}
-            onChange={(e) => handleChange(index, 'name', e.target.value)}
-            required
+            onChange={(e) => handleChange(index, "name", e.target.value)}
+            requiredS
           />
           <input
             type="number"
@@ -39,16 +41,25 @@ const IncomeExpensesForm = ({categories, setCategories}) => { // { PROPS }
             step="0.01"
             placeholder="Value"
             value={cat.value}
-            onChange={(e) => handleChange(index, 'value', parseFloat(e.target.value))}
+            onChange={(e) =>
+              handleChange(index, "value", parseFloat(e.target.value))
+            }
             required
           />
-          <button type="button" onClick={() => {deleteCategory(index)}}>X</button>
+          <button
+            type="button"
+            onClick={() => {
+              deleteCategory(index);
+            }}
+          >
+            X
+          </button>
         </div>
       ))}
-{/* Delete function needs arrow function to pass parameters, addcategory does not, can pass function itself */}
+      {/* Delete function needs arrow function to pass parameters, addcategory does not, can pass function itself */}
       <div className="income-expenses-form-buttons">
         <button type="button" onClick={addCategory}>
-        + Add Category
+          + Add Category
         </button>
         <button type="submit">Submit</button>
       </div>
@@ -56,4 +67,4 @@ const IncomeExpensesForm = ({categories, setCategories}) => { // { PROPS }
   );
 };
 
-export default IncomeExpensesForm;
+export default ExpensesForm;

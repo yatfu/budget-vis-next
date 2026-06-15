@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs';
  * inserts a user into user table
  * body: { username: string, password: string }
  */
+
 export async function POST(req: Request) {
   const body = await req.json(); // handle input, parses it to javascript
   const { username, password } = body; // expected values username and password
@@ -51,6 +52,16 @@ export async function POST(req: Request) {
       { error: "Internal server error" },
       { status: 500 });
   }
+}
+
+/**
+ * GET API
+ * only used for debugging
+ */
+
+export async function GET(req: Request) {
+  const result = await pool.query("SELECT * FROM users");
+  return Response.json(result.rows);
 }
 
 
