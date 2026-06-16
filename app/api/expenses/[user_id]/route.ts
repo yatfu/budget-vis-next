@@ -79,7 +79,7 @@ export async function save(request: Request, { params }: Params) {
       `;
     // userId from params
     const { label, amount, month, year } = insert;
-    const values = [userId, label, amount, month, year] 
+    const values = [userId, label, amount, month, year];
     insertSQL.push({ sql, values });
   }
   for (const update of updates) {
@@ -92,8 +92,8 @@ export async function save(request: Request, { params }: Params) {
       WHERE id = $5
       `;
     const { label, amount, month, year, id } = update;
-    const values = [label, amount, month, year, id]
-    updateSQL.push({ sql, values })
+    const values = [label, amount, month, year, id];
+    updateSQL.push({ sql, values });
   }
   for (const deleted of deletes) {
     const sql = `
@@ -101,34 +101,46 @@ export async function save(request: Request, { params }: Params) {
       WHERE id = $1
       AND user_id = $2
       RETURNING *
-    ` // both id and user_id are checked to prevent other users from deleting if they know the id
+    `; // both id and user_id are checked to prevent other users from deleting if they know the id
     // id from deletes (array of id: numbers)
     // userId from params
-    const values = [deleted, userId]
-    deleteSQL.push({sql, values})
+    const values = [deleted, userId];
+    deleteSQL.push({ sql, values });
   }
-  // send queries to database INDIVIDUALLY*
+  // send queries to database
 
   let insertResults = [];
   let updateResults = [];
   let deleteResults = [];
-  for (const query of insertSQL) {
-    const insertResult = await pool.query(query.sql, query.values);
-    insertResults.push(insertResult);
+
+  //
+  await pool.query("BEGIN");
+
+  try {
+    for (const query of insertSQL) {
+      const insertResult = await pool.query(query.sql, query.values);
+      insertResults.push(insertResult);
+    }
+    for (const query of updateSQL) {
+      const updateResult = await pool.query(query.sql, query.values);
+      updateResults.push(updateResult);
+    }
+    for (const query of deleteSQL) {
+      const deleteResult = await pool.query(query.sql, query.values);
+      deleteResults.push(deleteResult);
+    }
+
+    await pool.query("COMMIT");
+  } catch (err) {
+    await pool.query("ROLLBACK");
+    throw err;
   }
-  for (const query of updateSQL) {
-    const updateResult = await pool.query(query.sql, query.values);
-    updateResults.push(updateResult)
-  }
-  for (const query of deleteSQL) {
-    const deleteResult = await pool.query(query.sql, query.values);
-    deleteResults.push(deleteResult)
-  }
+
 
   return Response.json({
     inserted: insertResults,
     updated: updateResults,
-    deleted: deleteResults
+    deleted: deleteResults,
   });
 }
 
