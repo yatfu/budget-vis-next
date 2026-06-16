@@ -1,9 +1,16 @@
+type DateSelectorProps = {
+  selectedMonth: number;
+  setSelectedMonth: (month: number) => void;
+  selectedYear: number;
+  setSelectedYear: (year: number) => void;
+};
+
 const DateSelector = ({
   selectedMonth,
   setSelectedMonth,
   selectedYear,
   setSelectedYear,
-}) => {
+}: DateSelectorProps) => {
   return (
     <div>
       <h2>

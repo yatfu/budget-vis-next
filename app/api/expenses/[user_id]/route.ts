@@ -1,4 +1,5 @@
-import { pool } from '@db/db';
+import { pool } from "../../../../db/db"; // patch fix for @/ not working in dynamic route folder
+import type { Expense, Params, Query } from "../../../../lib/types"; // patch fix for @/ not working in dynamic route folder
 
 /**
  * SAVE FUNCTION
@@ -13,8 +14,8 @@ import { pool } from '@db/db';
  *      to batch them into singular/fewer queries
  */
 
-let testDataOld; // data on the bottom
-let testDataNew;
+let testDataOld: Expense[]; // data on the bottom
+let testDataNew: Expense[];
 
 /**
 ID 2 updated (Groceries amount changed)
@@ -23,127 +24,205 @@ ID 6 inserted
 ID 5 updated (label changed)
  */
 
-export async function save(request: Request, { params }) {
-    // get old data
-    const userId = params.user_id;
-    const [oldExpenses] = await pool.query(
-    'SELECT * FROM expenses WHERE user_id = ?',
-    [userId]);
+export async function save(request: Request, { params }: Params) {
+  // get old data
+  const userId = params.user_id;
+  const oldExpenses = await pool.query(
+    "SELECT * FROM expenses WHERE user_id = $1",
+    [userId]
+  );
 
-    // convert to maps for comparison
-    // searching with key in map is constant time vs linear array search
-    const oldMap = new Map(testDataOld.map(e => [e.id, e]));
-    const newMap = new Map(testDataNew.map(e => [e.id, e]));
+  // convert to maps for comparison
+  // searching with key in map is constant time vs linear array search
+  const oldMap = new Map(testDataOld.map((e) => [e.id, e]));
+  const newMap = new Map(testDataNew.map((e) => [e.id, e]));
 
-    // generate arrays of modified expenses through comparison
-    let inserts = [];
-    let updates = [];
-    let deletes = [];
+  // generate arrays of modified expenses through comparison
+  let inserts: Expense[] = [];
+  let updates: Expense[] = [];
+  let deletes: Number[] = [];
 
-    for (const [id, expense] of newMap) { // inserts
-        if (!oldMap.has(id)) {
-            inserts.push(expense);
-        }
+  for (const [id, expense] of newMap) {
+    // inserts
+    if (!oldMap.has(id)) {
+      inserts.push(expense);
     }
-    for (const [id, newExpense] of newMap) { // updates
-        const oldExpense = oldMap.get(id);
-        if (
-        oldExpense && 
-        JSON.stringify(oldExpense) !== JSON.stringify(newExpense)) { // cannot use !== because it compares references
-            updates.push(newExpense);
-        }
+  }
+  for (const [id, newExpense] of newMap) {
+    // updates
+    const oldExpense = oldMap.get(id);
+    if (
+      oldExpense &&
+      JSON.stringify(oldExpense) !== JSON.stringify(newExpense)
+    ) {
+      // cannot use !== because it compares references
+      updates.push(newExpense);
     }
-    for (const [id] of oldMap) { // deletes
-        if (!newMap.has(id)) {
-            deletes.push(id);
-        }
+  }
+  for (const [id] of oldMap) {
+    // deletes
+    if (!newMap.has(id)) {
+      deletes.push(id);
     }
-    // generate SQL using modified expenses
+  }
+  // generate SQL using modified expenses
+  // simple loop to convert then push
+  let insertSQL: Query[] = [];
+  let updateSQL: Query[] = [];
+  let deleteSQL: Query[] = [];
 
-    // send queries to database INDIVIDUALLY* 
+  for (const insert of inserts) {
+    const sql = `
+      INSERT INTO expenses (user_id, label, amount, month, year)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+      `;
+    // userId from params
+    const { label, amount, month, year } = insert;
+    const values = [userId, label, amount, month, year] 
+    insertSQL.push({ sql, values });
+  }
+  for (const update of updates) {
+    const sql = `
+      UPDATE expenses
+      SET label = $1,
+          amount = $2,
+          month = $3,
+          year = $4
+      WHERE id = $5
+      `;
+    const { label, amount, month, year, id } = update;
+    const values = [label, amount, month, year, id]
+    updateSQL.push({ sql, values })
+  }
+  for (const deleted of deletes) {
+    const sql = `
+      DELETE FROM expenses
+      WHERE id = $1
+      AND user_id = $2
+      RETURNING *
+    ` // both id and user_id are checked to prevent other users from deleting if they know the id
+    // id from deletes (array of id: numbers)
+    // userId from params
+    const values = [deleted, userId]
+    deleteSQL.push({sql, values})
+  }
+  // send queries to database INDIVIDUALLY*
+
+  let insertResults = [];
+  let updateResults = [];
+  let deleteResults = [];
+  for (const query of insertSQL) {
+    const insertResult = await pool.query(query.sql, query.values);
+    insertResults.push(insertResult);
+  }
+  for (const query of updateSQL) {
+    const updateResult = await pool.query(query.sql, query.values);
+    updateResults.push(updateResult)
+  }
+  for (const query of deleteSQL) {
+    const deleteResult = await pool.query(query.sql, query.values);
+    deleteResults.push(deleteResult)
+  }
+
+  return Response.json({
+    inserted: insertResults,
+    updated: updateResults,
+    deleted: deleteResults
+  });
 }
 
+/** 
+ * export type Expense = {
+  id: number;
+  user_id: number;
+  label: string;
+  amount: number;
+  month: number;
+  year: number;
+};
+ */
 testDataOld = [
   {
-    "id": 1,
-    "user_id": 1,
-    "label": "Rent",
-    "amount": 1200.00,
-    "month": 6,
-    "year": 2026
+    id: 1,
+    user_id: 1,
+    label: "Rent",
+    amount: 1200.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 2,
-    "user_id": 1,
-    "label": "Groceries",
-    "amount": 350.00,
-    "month": 6,
-    "year": 2026
+    id: 2,
+    user_id: 1,
+    label: "Groceries",
+    amount: 350.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 3,
-    "user_id": 1,
-    "label": "Internet",
-    "amount": 60.00,
-    "month": 6,
-    "year": 2026
+    id: 3,
+    user_id: 1,
+    label: "Internet",
+    amount: 60.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 4,
-    "user_id": 1,
-    "label": "Gas",
-    "amount": 100.00,
-    "month": 6,
-    "year": 2026
+    id: 4,
+    user_id: 1,
+    label: "Gas",
+    amount: 100.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 5,
-    "user_id": 1,
-    "label": "Gym",
-    "amount": 40.00,
-    "month": 6,
-    "year": 2026
-  }
+    id: 5,
+    user_id: 1,
+    label: "Gym",
+    amount: 40.0,
+    month: 6,
+    year: 2026,
+  },
 ];
 testDataNew = [
   {
-    "id": 1,
-    "user_id": 1,
-    "label": "Rent",
-    "amount": 1200.00,
-    "month": 6,
-    "year": 2026
+    id: 1,
+    user_id: 1,
+    label: "Rent",
+    amount: 1200.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 2,
-    "user_id": 1,
-    "label": "Groceries",
-    "amount": 425.00,
-    "month": 6,
-    "year": 2026
+    id: 2,
+    user_id: 1,
+    label: "Groceries",
+    amount: 425.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 3,
-    "user_id": 1,
-    "label": "Internet",
-    "amount": 60.00,
-    "month": 6,
-    "year": 2026
+    id: 3,
+    user_id: 1,
+    label: "Internet",
+    amount: 60.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 5,
-    "user_id": 1,
-    "label": "Fitness Membership",
-    "amount": 40.00,
-    "month": 6,
-    "year": 2026
+    id: 5,
+    user_id: 1,
+    label: "Fitness Membership",
+    amount: 40.0,
+    month: 6,
+    year: 2026,
   },
   {
-    "id": 6,
-    "user_id": 1,
-    "label": "Streaming",
-    "amount": 15.99,
-    "month": 6,
-    "year": 2026
-  }
+    id: 6,
+    user_id: 1,
+    label: "Streaming",
+    amount: 15.99,
+    month: 6,
+    year: 2026,
+  },
 ];
