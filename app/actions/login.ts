@@ -1,31 +1,36 @@
-// Step 1: Mark this file as a server-only module
-// This ensures the code can only run on the server, protecting sensitive operations
+"use server";
 
-// Step 2: Import necessary dependencies
-// Database connection pool
-// Password hashing/comparison library
+import { pool } from '@/db/db'
+import bcrypt from 'bcryptjs'
 
-// Step 3: Define the login function as an async server action
-// This function will be called from client components but runs on the server
+async function login(username: string, password: string) {
+    // Validate input data
+    if (!username || !password) {
+        return Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
+    }
+    // Query the database for the user
+    const passwordHash = await bcrypt.hash(password, 10);
+    const sql =
+        `SELECT id, username, passwordHash
+        FROM users
+        WHERE username = $1`;
+    const values = [username];
+    const result = await pool.query(sql, values);
+    // Check if user was found
+    if (result.rows.length === 0) {
+        return Error("User not found :(");
+    }
+    // Extract the user data from query result
+    const user = result.rows[0];
 
-// Step 4: Validate input data
-// Always check that required fields are provided
+    // Compare provided password with stored hashed password
+    // bcryptjs.compare() safely compares without exposing the hash
+    const match = await bcrypt.compare(passwordHash, user.password);
 
-// Step 5: Query the database for the user
-// Use parameterized queries ($1) to prevent SQL injection
-
-// Step 6: Check if user was found
-// If no rows returned, user doesn't exist
-
-// Step 7: Extract the user data from query result
-
-// Step 8: Compare provided password with stored hashed password
-// bcryptjs.compare() safely compares without exposing the hash
-
-// Step 9: Return error if password doesn't match
-
-// Step 10: Login successful - return user data
-// Note: Never return the password hash to the client
-
-// Step 11: Handle any unexpected errors
-// Log errors to console for debugging
+    // Return error if password doesn't match
+    if (!match) {
+        return Error("Incorrect password :(");
+    }
+    // Login successful, return user data NOT PASSWORD
+    return { id: user.id, username: user.username };
+}
