@@ -1,15 +1,24 @@
-"use client";
-import { useState } from "react";
+
 
 function Nav() {
-  const [currentTab, setCurrentTab] = useState("month");
-  
+  let user = undefined;
   return (
     <div className="nav py-3 flex justify-center">
-      <button className="">Sign In not implemented</button>
-      <button onClick={() => setCurrentTab("month")}>Monthly</button>
-      <button onClick={() => setCurrentTab("records")}>Yearly</button>
-    </div>
+      {user && (
+        <>
+          <a>Dashboard</a>
+          <a>Expenses</a>
+          <a>History</a>
+        </>
+
+      )}
+      {!user && (
+        <>
+          <button className="">Login</button>
+          <button className="">Register</button>
+        </>
+      )}
+      </div>
   );
 }
 
