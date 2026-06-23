@@ -1,4 +1,4 @@
-// import { Login } from './app/actions/login'
+ import { login } from '@/app/actions/login'
 import Link from "next/link";
 import LoginForm from "@/app/components/LoginForm";
 
@@ -9,7 +9,7 @@ import LoginForm from "@/app/components/LoginForm";
 function LoginPage() {
     return (
         <>
-            <LoginForm />
+            <LoginForm onSubmit={login}/>
             <Link href="/register">
                 <button>Register</button>
             </Link>

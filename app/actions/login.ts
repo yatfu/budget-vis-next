@@ -3,7 +3,7 @@
 import { pool } from '@/db/db'
 import bcrypt from 'bcryptjs'
 
-async function login(username: string, password: string) {
+export async function login(username: string, password: string) {
     // Validate input data
     if (!username || !password) {
         return Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
@@ -25,7 +25,7 @@ async function login(username: string, password: string) {
 
     // Compare provided password with stored hashed password
     // bcryptjs.compare() safely compares without exposing the hash
-    const match = await bcrypt.compare(passwordHash, user.password);
+    const match = await bcrypt.compare(password, user.passwordhash);
 
     // Return error if password doesn't match
     if (!match) {
