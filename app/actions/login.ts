@@ -2,6 +2,14 @@
 
 import { pool } from '@/db/db'
 import bcrypt from 'bcryptjs'
+import crypto from "crypto"; // uuid generation
+import { cookies } from "next/headers";
+
+const SESSION_LENGTH = 60 * 60 * 24 * 7; // 7 days
+
+const expiresAt = new Date( // postgres will convert javascript date object to sql date format when sending query
+    Date.now() + SESSION_LENGTH * 1000
+  );
 
 export async function login(username: string, password: string) {
     // Validate input data
@@ -31,6 +39,26 @@ export async function login(username: string, password: string) {
     if (!match) {
         return Error("Incorrect password :(");
     }
-    // Login successful, return user data NOT PASSWORD
+    // Login successful, create session
+    const sessionId = crypto.randomUUID();
+
+    await pool.query(
+      `INSERT INTO sessions (id, user_id, expires_at)
+       VALUES ($1, $2, NOW() + ($3 * INTERVAL '1 second'))`,
+      [sessionId, user.id, expiresAt]
+    );
+
+    // Set cookie
+  const cookieStore = await cookies();
+
+  cookieStore.set("session", sessionId, {
+    httpOnly: true, // security
+    secure: process.env.NODE_ENV === "production", // allows for localhost to still work when in dev 
+    sameSite: "lax",
+    path: "/",
+    maxAge: SESSION_LENGTH, //
+  });
+
+
     return { id: user.id, username: user.username };
 }

@@ -18,9 +18,8 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
+    <form className="login-form"> {/* onSubmit={handleSubmit}*/}
       <div>
-
         <label>Username</label>
         <input
           id="username"
