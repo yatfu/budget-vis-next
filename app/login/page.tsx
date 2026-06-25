@@ -9,7 +9,7 @@ import LoginForm from "@/app/components/LoginForm";
  export default function LoginPage() {
     return (
         <>
-            <LoginForm onSubmit={login}/>
+            <LoginForm action={login}/>
             <Link href="/register">
                 <button>Register</button>
             </Link>
