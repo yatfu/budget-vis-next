@@ -1,24 +1,15 @@
 "use client";
 
-import React, { useState, type FormEvent } from "react"; // form event is only used for typescript declaration
+import React, { useState } from "react";
 
-type LoginFormProps = {
-  onSubmit?: (username: string, password: string) => void;
-};
-
-export default function LoginForm({ onSubmit }: LoginFormProps) {
+export default function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (onSubmit) {
-      onSubmit(username, password);
-    }
-  };
+  async function handleRegistration() {}
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <form className="register-form" onSubmit={handleRegistration}>
       <div>
         <label>Username</label>
         <input
@@ -40,9 +31,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
           required
         />
       </div>
-
-      <button type="submit">Log In</button>
-
+      <button type="submit">Register</button>
     </form>
   );
 }

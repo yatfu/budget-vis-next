@@ -19,7 +19,7 @@ export async function login(username: string, password: string) {
     // Query the database for the user
     const passwordHash = await bcrypt.hash(password, 10);
     const sql =
-        `SELECT id, username, passwordHash
+        `SELECT id, username, password
         FROM users
         WHERE username = $1`;
     const values = [username];
@@ -33,7 +33,7 @@ export async function login(username: string, password: string) {
 
     // Compare provided password with stored hashed password
     // bcryptjs.compare() safely compares without exposing the hash
-    const match = await bcrypt.compare(password, user.passwordhash);
+    const match = await bcrypt.compare(password, user.password);
 
     // Return error if password doesn't match
     if (!match) {
@@ -58,7 +58,8 @@ export async function login(username: string, password: string) {
     path: "/",
     maxAge: SESSION_LENGTH, //
   });
+  console.log("Cookies set")
 
-
+    console.log(user);
     return { id: user.id, username: user.username };
 }

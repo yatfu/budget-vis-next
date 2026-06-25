@@ -1,4 +1,4 @@
- import { login } from '@/app/actions/login'
+import { login } from '@/app/actions/login'
 import Link from "next/link";
 import LoginForm from "@/app/components/LoginForm";
 
@@ -6,7 +6,7 @@ import LoginForm from "@/app/components/LoginForm";
  * Login Page
  * uses login server action instead of api to validate and handle data
  */
-function LoginPage() {
+ export default function LoginPage() {
     return (
         <>
             <LoginForm onSubmit={login}/>
@@ -17,4 +17,3 @@ function LoginPage() {
     );
 }
 
-export default LoginPage
