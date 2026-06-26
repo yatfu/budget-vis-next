@@ -18,7 +18,7 @@ export async function login(formData: FormData) {
   // Validate input data
   if (!username || !password) {
     console.log("You need username and password dummy -.-");
-    return Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
+    throw new Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
   }
   // Query the database for the user
   const passwordHash = await bcrypt.hash(password, 10);
@@ -30,7 +30,7 @@ export async function login(formData: FormData) {
   // Check if user was found
   if (result.rows.length === 0) {
     console.log("user not found");
-    return Error("User not found :(");
+    throw new Error("User not found :(");
   }
   // Extract the user data from query result
   const user = result.rows[0];
@@ -42,7 +42,7 @@ export async function login(formData: FormData) {
   // Return error if password doesn't match
   if (!match) {
     console.log("incorrect password");
-    return Error("Incorrect password :(");
+    throw new Error("Incorrect password :(");
   }
   // Login successful, create session
   const sessionId = crypto.randomUUID();

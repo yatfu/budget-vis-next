@@ -1,8 +1,8 @@
 "use client";
 
-export default function LoginForm({ action }: {action: (formData: FormData) => Promise<void>}) {
+export default function Register({ action }: {action: (formData: FormData) => Promise<string | Error>}) {
   return (
-    <form className="login-form" action={action}>
+    <form className="register-form" action={action}>
       <div>
         <label>Username</label>
         <input type="text" name="username" required />
@@ -13,7 +13,7 @@ export default function LoginForm({ action }: {action: (formData: FormData) => P
         <input type="password" name="password" required />
       </div>
 
-      <button type="submit">Log In</button>
+      <button type="submit">Register</button>
     </form>
   );
 }

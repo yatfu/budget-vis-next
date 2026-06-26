@@ -11,7 +11,7 @@ export async function register(formData: FormData) {
   // Validate input data
   if (!username || !password) {
     console.log("You need username and password dummy -.-");
-    return Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
+    throw new Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
   }
     // hash password
 const passwordHash = await bcrypt.hash(password, 10);
@@ -21,7 +21,7 @@ const checkValues = [username];
 const checkResult = await pool.query(checkSql, checkValues);
 if (checkResult.rows.length > 0) {
     console.log("Username already exists");
-    return Error("Username already exists :(");
+    throw new Error("Username already exists :(");
 }
     
   // Insert new user into the database
