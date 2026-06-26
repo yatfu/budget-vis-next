@@ -4,6 +4,9 @@ dashboard: i want the user to see the doughnut chart of their current month's sp
 Reducing friction is key for a budgeting app, where users will enter data multiple times a day.
 I want the nav bar to be relatively the same on web and mobile, but nav icons positioned on the bottom for mobile.  There will be three buttons: dashboard (home), budget editor (pie chart), budget statistics (line graph). Sign in/profile will be its own icon on top right of window.
 
+SHADCN COMPONENTS:
+button, card, 
+
 
 
 NOTES -----

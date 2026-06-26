@@ -2,34 +2,20 @@
 
 import React, { useState } from "react";
 
-export default function RegisterForm() {
+export default function RegisterForm({ action }: {action: (formData: FormData) => Promise<void>}) {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  async function handleRegistration() {}
-
   return (
-    <form className="register-form" onSubmit={handleRegistration}>
+    <form className="register-form" action={action}>
       <div>
         <label>Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+        <input type="text" name="username" required />
       </div>
 
       <div>
         <label>Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <input type="password" name="password" required />
       </div>
       <button type="submit">Register</button>
     </form>

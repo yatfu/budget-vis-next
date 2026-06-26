@@ -1,10 +1,6 @@
 "use client";
 
-type LoginFormProps = {
-  action: (formData: FormData) => Promise<void>;
-};
-
-export default function LoginForm({ action }: LoginFormProps) {
+export default function LoginForm({ action }: {action: (formData: FormData) => Promise<void>}) {
   return (
     <form className="login-form" action={action}>
       <div>
