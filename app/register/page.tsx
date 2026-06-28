@@ -1,8 +1,9 @@
 "use client";
+import { register } from "../actions/register";
 
-export default function Register({ action }: {action: (formData: FormData) => Promise<string | Error>}) {
+export default function Register() {
   return (
-    <form className="register-form" action={action}>
+    <form className="register-form" action={register}>
       <div>
         <label>Username</label>
         <input type="text" name="username" required />

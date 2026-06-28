@@ -21,7 +21,6 @@ export async function login(formData: FormData) {
     throw new Error("You need username and password dummy -.-"); // returned error will be caught in the component and displayed to user
   }
   // Query the database for the user
-  const passwordHash = await bcrypt.hash(password, 10);
   const sql = `SELECT id, username, password
         FROM users
         WHERE username = $1`;
@@ -49,7 +48,7 @@ export async function login(formData: FormData) {
 
   await pool.query(
     `INSERT INTO sessions (id, user_id, expires_at)
-       VALUES ($1, $2, NOW() + ($3 * INTERVAL '1 second'))`,
+       VALUES ($1, $2, $3)`,
     [sessionId, user.id, expiresAt]
   );
 

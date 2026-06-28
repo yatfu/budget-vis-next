@@ -1,18 +1,20 @@
+import { logout } from "../actions/logout";
 
-
-function Nav() {
-  let user = undefined;
+const Nav = ({userId}) => {
   return (
     <div className="nav py-3 flex justify-center">
-      {user && (
+      {userId && (
         <>
           <a>Dashboard</a>
           <a>Expenses</a>
           <a>History</a>
+          <form action={logout}>
+            <button type="submit">Log Out</button>
+          </form>
         </>
 
       )}
-      {!user && (
+      {!userId && (
         <>
           <button className="">Login</button>
           <button className="">Register</button>
