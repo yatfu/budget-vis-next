@@ -1,23 +1,45 @@
 "use client";
 
-import IncomeExpensesForm from './IncomeExpensesForm';
-import IncomeExpensesChart from './IncomeExpensesChart';
-import { useState } from 'react';
+import ExpensesForm from "./ExpensesForm";
+import ExpensesChart from "./ExpensesChart";
+import { useState, useEffect } from "react";
+import DateSelector from './DateSelector';
 
 const Expenses = () => {
-  const [categories, setCategories] = useState([
-    { name: 'Housing/Rent', value: '3000' },
-    { name: 'Utilities', value: '500'},
-    { name: 'Food', value: '1000'},
-    { name: 'Other', value: '500'}
-  ]);
+  const now = new Date();
+  const user_id = 1;
 
+  const [expenses, setExpenses] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState(now.getMonth() + 1); // 1 == january
+  const [selectedYear, setSelectedYear] = useState(now.getFullYear());
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/expenses?user_id=${user_id}`);
+      const data = await res.json();
+      console.log("EXPENSES DATA:", data);
+      setExpenses(data);
+    })();
+  }, []);
+
+  const oldExpenses = expenses // used for comparing to updated expenses when saving to database
+  const filteredExpenses = expenses
+    .filter((expenses) => expenses.month === selectedMonth)
+    .filter((expenses) => expenses.year === selectedYear); // used for rendering selected dates
+
+  //<ExpensesForm expenses={expenses} setExpenses={setExpenses} />
   return (
     <div className="expenses">
-            <IncomeExpensesForm categories={categories} setCategories={setCategories} />
-      <IncomeExpensesChart title={"Expenses"}
-        labels={categories.map(category => category.name)} 
-        values={categories.map(category => parseFloat(category.value))}
+      <DateSelector 
+        selectedMonth={selectedMonth}
+        setSelectedMonth={setSelectedMonth}
+        selectedYear={selectedYear}
+        setSelectedYear={setSelectedYear}
+      />
+      <ExpensesChart
+        title={"Expenses"}
+        labels={filteredExpenses.map((exp) => exp.label)}
+        values={filteredExpenses.map((exp) => parseFloat(exp.amount))}
       />
     </div>
   );

@@ -1,4 +1,12 @@
 UI BRAINSTORM -----
+dashboard: i want the user to see the doughnut chart of their current month's spending first, along with a form underneath it only to add to it. The reason why i want only add functionality is to keep the dashboard simple, and allow the user to update their spending with the least friction possible, which means as soon as they open the app. MAYBE next to the add form, add ... icon leading to the actual page (could be redundant with nav bar icons)
+
+Reducing friction is key for a budgeting app, where users will enter data multiple times a day.
+I want the nav bar to be relatively the same on web and mobile, but nav icons positioned on the bottom for mobile.  There will be three buttons: dashboard (home), budget editor (pie chart), budget statistics (line graph). Sign in/profile will be its own icon on top right of window.
+
+SHADCN COMPONENTS:
+button, card, 
+
 
 
 NOTES -----
@@ -14,7 +22,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE categories (
+CREATE TABLE expenses (
   id SERIAL PRIMARY KEY,
   -- user_id INTEGER NOT NULL REFERENCES users(id), -- commented out until auth is added
   name VARCHAR(100) NOT NULL CHECK (length(name) > 0),

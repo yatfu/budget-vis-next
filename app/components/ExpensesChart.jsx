@@ -9,7 +9,7 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const IncomeExpensesChart = ({labels, values}) => {
+const ExpensesChart = ({labels, values}) => {
   // Random values for demo
   const chartColors = [
   'rgba(255, 99, 132, 0.7)',     // vivid red
@@ -67,4 +67,4 @@ const IncomeExpensesChart = ({labels, values}) => {
   );
 };
 
-export default IncomeExpensesChart;
+export default ExpensesChart;

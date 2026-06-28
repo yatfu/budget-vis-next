@@ -1,15 +1,26 @@
-"use client";
-import { useState } from "react";
+import { logout } from "../actions/logout";
 
-function Nav() {
-  const [currentTab, setCurrentTab] = useState("month");
-  
+const Nav = ({userId}) => {
   return (
     <div className="nav py-3 flex justify-center">
-      <button className="">Sign In not implemented</button>
-      <button onClick={() => setCurrentTab("month")}>Monthly</button>
-      <button onClick={() => setCurrentTab("records")}>Yearly</button>
-    </div>
+      {userId && (
+        <>
+          <a>Dashboard</a>
+          <a>Expenses</a>
+          <a>History</a>
+          <form action={logout}>
+            <button type="submit">Log Out</button>
+          </form>
+        </>
+
+      )}
+      {!userId && (
+        <>
+          <button className="">Login</button>
+          <button className="">Register</button>
+        </>
+      )}
+      </div>
   );
 }
 
