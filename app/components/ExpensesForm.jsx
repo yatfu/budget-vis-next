@@ -1,39 +1,39 @@
 import React, { useState } from "react";
-const ExpensesForm = ({ categories, setCategories }) => {
+const ExpensesForm = ({ expenses, setExpenses }) => {
   // { PROPS }
 
   const handleChange = (index, field, value) => {
-    const newCategories = [...categories];
-    newCategories[index][field] = value;
-    setCategories(newCategories);
+    const newExpenses = [...expenses];
+    newExpenses[index][field] = value;
+    setExpenses(newExpenses);
   };
 
   const addCategory = () => {
-    setCategories([...categories, { name: "New Expense", value: 1000 }]);
+    setExpenses([...expenses, { name: "New Expense", value: 1000 }]);
   };
 
   const deleteCategory = (indexToRemove) => {
-    const newCategories = categories.filter(
+    const newExpenses = expenses.filter(
       (element, index, array) => index !== indexToRemove
     );
-    setCategories(newCategories);
+    setExpenses(newExpenses);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted expenses:", categories);
+    console.log("Submitted expenses:", expenses);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {categories.map((cat, index) => (
+      {expenses.map((cat, index) => (
         <div key={index}>
           <input
             type="text"
             placeholder="Category Name"
             value={cat.name}
             onChange={(e) => handleChange(index, "name", e.target.value)}
-            requiredS
+            required
           />
           <input
             type="number"

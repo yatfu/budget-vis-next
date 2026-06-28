@@ -1,5 +1,5 @@
-import { pool } from "../../../../db/db"; // patch fix for @/ not working in dynamic route folder
-import type { Expense, Params, Query } from "../../../../lib/types"; // patch fix for @/ not working in dynamic route folder
+import { pool } from "@/db/db";
+import type { Expense, Params, Query } from "@/lib/types";
 
 /**
  * SAVE FUNCTION
@@ -14,28 +14,18 @@ import type { Expense, Params, Query } from "../../../../lib/types"; // patch fi
  *      to batch them into singular/fewer queries
  */
 
-let testDataOld: Expense[]; // data on the bottom
-let testDataNew: Expense[];
-
-/**
-ID 2 updated (Groceries amount changed)
-ID 4 deleted
-ID 6 inserted
-ID 5 updated (label changed)
- */
-
 export async function save(request: Request, { params }: Params) {
   // get old data
   const userId = params.user_id;
-  const oldExpenses = await pool.query(
-    "SELECT * FROM expenses WHERE user_id = $1",
+  const {rows: oldExpenses } = await pool.query<Expense>(
+    "SELECT id, user_id, label, amount, month, year FROM expenses WHERE user_id = $1",
     [userId]
   );
 
   // convert to maps for comparison
   // searching with key in map is constant time vs linear array search
-  const oldMap = new Map(testDataOld.map((e) => [e.id, e]));
-  const newMap = new Map(testDataNew.map((e) => [e.id, e]));
+  const oldMap = new Map(oldExpenses.map((e) => [e.id, e]));
+  const newMap = new Map(newExpenses.map((e) => [e.id, e]));
 
   // generate arrays of modified expenses through comparison
   let inserts: Expense[] = [];
@@ -154,87 +144,3 @@ export async function save(request: Request, { params }: Params) {
   year: number;
 };
  */
-testDataOld = [
-  {
-    id: 1,
-    user_id: 1,
-    label: "Rent",
-    amount: 1200.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 2,
-    user_id: 1,
-    label: "Groceries",
-    amount: 350.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 3,
-    user_id: 1,
-    label: "Internet",
-    amount: 60.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    label: "Gas",
-    amount: 100.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 5,
-    user_id: 1,
-    label: "Gym",
-    amount: 40.0,
-    month: 6,
-    year: 2026,
-  },
-];
-testDataNew = [
-  {
-    id: 1,
-    user_id: 1,
-    label: "Rent",
-    amount: 1200.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 2,
-    user_id: 1,
-    label: "Groceries",
-    amount: 425.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 3,
-    user_id: 1,
-    label: "Internet",
-    amount: 60.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 5,
-    user_id: 1,
-    label: "Fitness Membership",
-    amount: 40.0,
-    month: 6,
-    year: 2026,
-  },
-  {
-    id: 6,
-    user_id: 1,
-    label: "Streaming",
-    amount: 15.99,
-    month: 6,
-    year: 2026,
-  },
-];

@@ -22,7 +22,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE categories (
+CREATE TABLE expenses (
   id SERIAL PRIMARY KEY,
   -- user_id INTEGER NOT NULL REFERENCES users(id), -- commented out until auth is added
   name VARCHAR(100) NOT NULL CHECK (length(name) > 0),
