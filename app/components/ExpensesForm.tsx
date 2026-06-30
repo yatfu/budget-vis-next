@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import { Expense } from "@/lib/types";
+import { Expense, ExpenseUseState } from "@/lib/types";
 
-type ExpenseFormProps = {
-  expenses: Expense[];
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
-}
-
-const ExpensesForm = ({ expenses, setExpenses }: ExpenseFormProps) => {
+const ExpensesForm = ({ expenses, setExpenses }: ExpenseUseState) => {
   // { PROPS }
 
   const handleChange = (index: number, field: keyof Expense, value: string | number) => {

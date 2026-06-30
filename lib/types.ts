@@ -7,6 +7,11 @@ export type Expense = {
   year: number;
 };
 
+export type ExpenseUseState = {
+  expenses: Expense[];
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+}
+
 export type Params = {
   params: {
     user_id: number;
