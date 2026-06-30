@@ -1,4 +1,5 @@
 import { pool } from '@/db/db'
+import { authenticate } from '@/lib/auth';
 
 /** */
 const PLACEHOLDER_QUERY = `INSERT INTO expenses (user_id, label, amount, month, year)
@@ -54,13 +55,11 @@ VALUES
  */
 
 export async function POST(req: Request) {
-  const body = await req.json(); // handle input, parses it to javascript
-
-  const { searchParams } = new URL(req.url); // parses url into URL format to extract id
-  const userId = searchParams.get("user_id");
+  const body = await req.json(); // handle input, parse it to javascript
+  const userId = authenticate();
   let checkedUserId: number;
 
-  try { checkedUserId = checkUserId(userId); }
+  try { checkedUserId = checkUserId(userId); } // validate user id
   catch (error) {
     return Response.json(
       { error: (error as Error).message },
@@ -73,11 +72,10 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url); // parses url into URL format to extract id
-  const userId = searchParams.get("user_id");
+  const userId = authenticate();
   let checkedUserId: number;
 
-  try { checkedUserId = checkUserId(userId); }
+  try { checkedUserId = checkUserId(userId); } // validate user id
   catch (error) {
     return Response.json(
       { error: (error as Error).message },

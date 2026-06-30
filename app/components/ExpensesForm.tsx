@@ -1,29 +1,46 @@
-import React, { useState } from "react";
 import { Expense, ExpenseUseState } from "@/lib/types";
 
-const ExpensesForm = ({ expenses, setExpenses }: ExpenseUseState) => {
+const ExpensesForm = (
+  { expenses, setExpenses, selectedMonth, selectedYear }: 
+  ExpenseUseState & {selectedMonth: number; selectedYear: number}) => {
   // { PROPS }
-
-  const handleChange = (index: number, field: keyof Expense, value: string | number) => {
+  const handleChange = <K extends keyof Expense>(
+    index: number, field: K, value: Expense[K]) => { // 
     const newExpenses = [...expenses];
     newExpenses[index][field] = value;
     setExpenses(newExpenses);
   };
 
   const addCategory = () => {
-    setExpenses([...expenses, { name: "New Expense", value: 1000 }]);
+    const tempId = "temp" + crypto.randomUUID();// temp id is used to match type
+    setExpenses([...expenses, 
+      { id: tempId, user_id: tempId, label: "New Expense", amount: 1000, month: selectedMonth, year: selectedYear }
+    ]); // temp ids are not sent to db
   };
 
-  const deleteCategory = (indexToRemove) => {
+  const deleteCategory = (indexToRemove: number) => {
     const newExpenses = expenses.filter(
       (element, index, array) => index !== indexToRemove
     );
     setExpenses(newExpenses);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submitted expenses:", expenses);
+    try {
+      const postResponse = await fetch("/api/expenses", { // save expenses
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(expenses)
+      });
+      if (!postResponse.ok) { // check for error response
+        throw new Error("Failed to save expenses");
+      }
+      console.log("Submitted expenses:", expenses);
+
+    } catch (error) {console.error(error);}
   };
 
   return (

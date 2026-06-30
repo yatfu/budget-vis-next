@@ -1,6 +1,6 @@
 export type Expense = {
-  id: number;
-  user_id: number;
+  id: number | string; // string is for temp values,
+  user_id: number | string; // string is for temp values
   label: string;
   amount: number;
   month: number;
@@ -11,12 +11,6 @@ export type ExpenseUseState = {
   expenses: Expense[];
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 }
-
-export type Params = {
-  params: {
-    user_id: number;
-  };
-};
 
 export type Query = {
   sql: string,
