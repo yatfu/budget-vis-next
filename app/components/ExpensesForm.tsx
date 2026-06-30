@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-const ExpensesForm = ({ expenses, setExpenses }) => {
+import { Expense } from "@/lib/types";
+
+type ExpenseFormProps = {
+  expenses: Expense[];
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+}
+
+const ExpensesForm = ({ expenses, setExpenses }: ExpenseFormProps) => {
   // { PROPS }
 
-  const handleChange = (index, field, value) => {
+  const handleChange = (index: number, field: keyof Expense, value: string | number) => {
     const newExpenses = [...expenses];
     newExpenses[index][field] = value;
     setExpenses(newExpenses);
@@ -26,13 +33,13 @@ const ExpensesForm = ({ expenses, setExpenses }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {expenses.map((cat, index) => (
+      {expenses.map((expense, index) => (
         <div key={index}>
           <input
             type="text"
             placeholder="Category Name"
-            value={cat.name}
-            onChange={(e) => handleChange(index, "name", e.target.value)}
+            value={expense.label}
+            onChange={(e) => handleChange(index, "label", e.target.value)}
             required
           />
           <input
@@ -40,9 +47,9 @@ const ExpensesForm = ({ expenses, setExpenses }) => {
             min="0"
             step="0.01"
             placeholder="Value"
-            value={cat.value}
+            value={expense.amount}
             onChange={(e) =>
-              handleChange(index, "value", parseFloat(e.target.value))
+              handleChange(index, "amount", parseFloat(e.target.value))
             }
             required
           />

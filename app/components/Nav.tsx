@@ -1,6 +1,9 @@
 import { logout } from "../actions/logout";
+type Props = {
+  userId?: String;
+};
 
-const Nav = ({userId}) => {
+const Nav = ({userId}: Props) => {
   return (
     <div className="nav py-3 flex justify-center">
       {userId && (
