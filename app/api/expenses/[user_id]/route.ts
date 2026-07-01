@@ -17,6 +17,7 @@ import { authenticate } from "@/lib/auth";
 export async function POST(request: Request) {
   // get old data
   let oldExpenses: Expense[];
+  let newExpenses: Expense[];
   let userId: number;
   try {
     const authenticated = await authenticate();
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
   }
   // get new data
   try {
-    const newExpenses = await request.json();
+    newExpenses = await request.json();
   } catch (error) {
     console.log("Invalid request body", error);
     return Response.json(

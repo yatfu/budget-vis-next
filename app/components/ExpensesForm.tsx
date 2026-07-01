@@ -28,14 +28,14 @@ const ExpensesForm = (
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const postResponse = await fetch("/api/expenses", { // save expenses
+      const response = await fetch("/api/expenses", { // save expenses
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(expenses)
       });
-      if (!postResponse.ok) { // check for error response
+      if (!response.ok) { // check for error response
         throw new Error("Failed to save expenses");
       }
       console.log("Submitted expenses:", expenses);

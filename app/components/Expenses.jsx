@@ -38,8 +38,8 @@ const Expenses = () => {
       />
       <ExpensesChart
         title={"Expenses"}
-        labels={filteredExpenses.map((exp) => exp.label)}
-        values={filteredExpenses.map((exp) => parseFloat(exp.amount))}
+        labels={filteredExpenses.map((expense) => expense.label)}
+        values={filteredExpenses.map((expense) => parseFloat(expense.amount))}
       />
     </div>
   );
