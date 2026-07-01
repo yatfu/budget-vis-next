@@ -7,10 +7,9 @@ import { cookies } from "next/headers";
 
 const SESSION_LENGTH = 60 * 60 * 24 * 7; // 7 days
 
-const expiresAt = new Date(Date.now() + SESSION_LENGTH * 1000); // postgres will convert javascript date object to sql date format when sending query
-
 export async function login(formData: FormData) {
-  console.log("Executing Login function")
+  const expiresAt = new Date(Date.now() + SESSION_LENGTH * 1000); // postgres will convert javascript date object to sql date format when sending query
+  console.log(`Session will expire at: ${expiresAt.toISOString()}`); // log expiration time for debugging")
   const username: string = formData.get("username") as string;
   const password: string = formData.get("password") as string;
 

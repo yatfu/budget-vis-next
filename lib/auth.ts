@@ -6,6 +6,7 @@ export async function authenticate() {
     const sessionId = (await cookies()).get("session")?.value;
 
     if (!sessionId) {
+      console.log("No session cookie found");
       return null;
     }
   
@@ -23,7 +24,7 @@ export async function authenticate() {
   
     return result.rows[0].user_id;
   } catch (error) {
-    console.error("Auth error");
+    console.error("Auth error", error);
     return null;
   }
 }

@@ -56,19 +56,19 @@ VALUES
  */
 
 export async function POST(request: Request) {
-  // get old data
   let oldExpenses: Expense[];
-  let newExpenses: Expense[];
+  let newExpenses: unknown;
   let userId: number;
+  // get user id using authenticate app
   try {
-    const authenticated = await authenticate();
-    if (!authenticated) {
+    userId = await authenticate();
+    if (!userId) {
       return Response.json(
         { error: "Unauthorized, userId is null" },
         { status: 401 }
       );
     }
-    userId = authenticated;
+    // get old data
     const result = await pool.query<Expense>(
       "SELECT id, user_id, label, amount, month, year FROM expenses WHERE user_id = $1",
       [userId]
@@ -85,6 +85,12 @@ export async function POST(request: Request) {
   // get new data
   try {
     newExpenses = await request.json();
+    if (!Array.isArray(newExpenses) || !newExpenses.every(isExpense)) {
+      return Response.json(
+        { error: "Invalid request body" },
+        { status: 400 }
+      );
+    }
   } catch (error) {
     console.log("Invalid request body", error);
     return Response.json(
@@ -212,7 +218,8 @@ export async function POST(request: Request) {
 }
 
 export async function GET(req: Request) {
-  const userId = authenticate();
+  const userId = await authenticate();
+  console.log(userId);
   let checkedUserId: number;
 
   try { checkedUserId = checkUserId(userId); } // validate user id
@@ -243,9 +250,9 @@ export async function DELETE(req: Request) {
 
   try {
     checkedUserId = checkUserId(userId);
-  
+
     // continue...
-  
+
   } catch (error) {
     return Response.json(
       { error: (error as Error).message },
@@ -257,11 +264,11 @@ export async function DELETE(req: Request) {
     "DELETE FROM expenses WHERE user_id = $1",
     [checkedUserId]);
 
-    return Response.json({
-      success: true,
-      message: "Expenses deleted successfully",
-      deletedCount: result.rowCount
-    });
+  return Response.json({
+    success: true,
+    message: "Expenses deleted successfully",
+    deletedCount: result.rowCount
+  });
 
 }
 /**
@@ -277,4 +284,15 @@ const checkUserId = (id: any) => {
     throw new Error("user_id is not correct datatype");
   }
   return parsedUserId;
+}
+
+function isExpense(expense: any): boolean { // helper function to check request body for correct type. used in POST function
+  return (
+    expense &&
+    typeof expense.id === "number" &&
+    typeof expense.label === "string" &&
+    typeof expense.amount === "number" &&
+    typeof expense.month === "number" &&
+    typeof expense.year === "number"
+  );
 }
