@@ -39,6 +39,7 @@ const Expenses = () => {
         labels={filteredExpenses.map((expense) => expense.label)}
         values={filteredExpenses.map((expense) => parseFloat(expense.amount))}
       />
+      <ExpensesForm expenses={expenses} setExpenses={setExpenses} selectedMonth={selectedMonth} selectedYear={selectedYear} />
     </div>
   );
 };

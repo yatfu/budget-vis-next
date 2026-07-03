@@ -86,6 +86,7 @@ export async function POST(request: Request) {
   try {
     newExpenses = await request.json();
     if (!Array.isArray(newExpenses) || !newExpenses.every(isExpense)) {
+      console.error("Invalid request body", newExpenses);
       return Response.json(
         { error: "Invalid request body" },
         { status: 400 }
@@ -289,7 +290,7 @@ const checkUserId = (id: any) => {
 function isExpense(expense: any): boolean { // helper function to check request body for correct type. used in POST function
   return (
     expense &&
-    typeof expense.id === "number" &&
+    typeof expense.id === "string" &&
     typeof expense.label === "string" &&
     typeof expense.amount === "number" &&
     typeof expense.month === "number" &&

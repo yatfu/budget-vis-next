@@ -4,6 +4,7 @@ import { pool } from "@/db/db";
 export async function authenticate() {
   try {
     const sessionId = (await cookies()).get("session")?.value;
+    console.log(sessionId)
 
     if (!sessionId) {
       console.log("No session cookie found");

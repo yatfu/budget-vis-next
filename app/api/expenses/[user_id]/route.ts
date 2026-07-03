@@ -156,8 +156,8 @@ export async function POST(request: Request) {
     await client.query("COMMIT");
   } catch (error) {
     await client.query("ROLLBACK");
-    console.error("Failed saving expenses", error);
-    return Response.json({ error: "Failed saving expenses" }, { status: 500 });
+    console.error("Failed saving expenses to DB", error);
+    return Response.json({ error: "Failed saving expenses to DB" }, { status: 500 });
   } finally {
     // release client from imprisonment :)
     client.release();
