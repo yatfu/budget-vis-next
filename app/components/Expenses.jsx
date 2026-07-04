@@ -7,7 +7,6 @@ import DateSelector from './DateSelector';
 
 const Expenses = () => {
   const now = new Date();
-  const user_id = 1;
 
   const [expenses, setExpenses] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(now.getMonth() + 1); // 1 == january
@@ -15,17 +14,16 @@ const Expenses = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`/api/expenses?user_id=${user_id}`);
+      const res = await fetch(`/api/expenses`);
       const data = await res.json();
       console.log("EXPENSES DATA:", data);
       setExpenses(data);
     })();
   }, []);
 
-  const oldExpenses = expenses // used for comparing to updated expenses when saving to database
   const filteredExpenses = expenses
-    .filter((expenses) => expenses.month === selectedMonth)
-    .filter((expenses) => expenses.year === selectedYear); // used for rendering selected dates
+    .filter((expense) => expense.month === selectedMonth)
+    .filter((expense) => expense.year === selectedYear); // used for rendering selected dates
 
   //<ExpensesForm expenses={expenses} setExpenses={setExpenses} />
   return (
@@ -38,9 +36,10 @@ const Expenses = () => {
       />
       <ExpensesChart
         title={"Expenses"}
-        labels={filteredExpenses.map((exp) => exp.label)}
-        values={filteredExpenses.map((exp) => parseFloat(exp.amount))}
+        labels={filteredExpenses.map((expense) => expense.label)}
+        values={filteredExpenses.map((expense) => parseFloat(expense.amount))}
       />
+      <ExpensesForm expenses={expenses} setExpenses={setExpenses} selectedMonth={selectedMonth} selectedYear={selectedYear} />
     </div>
   );
 };

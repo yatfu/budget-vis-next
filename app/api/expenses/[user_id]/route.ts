@@ -17,6 +17,7 @@ import { authenticate } from "@/lib/auth";
 export async function POST(request: Request) {
   // get old data
   let oldExpenses: Expense[];
+  let newExpenses: Expense[];
   let userId: number;
   try {
     const authenticated = await authenticate();
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
   }
   // get new data
   try {
-    const newExpenses = await request.json();
+    newExpenses = await request.json();
   } catch (error) {
     console.log("Invalid request body", error);
     return Response.json(
@@ -155,8 +156,8 @@ export async function POST(request: Request) {
     await client.query("COMMIT");
   } catch (error) {
     await client.query("ROLLBACK");
-    console.error("Failed saving expenses", error);
-    return Response.json({ error: "Failed saving expenses" }, { status: 500 });
+    console.error("Failed saving expenses to DB", error);
+    return Response.json({ error: "Failed saving expenses to DB" }, { status: 500 });
   } finally {
     // release client from imprisonment :)
     client.release();

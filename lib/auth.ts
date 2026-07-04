@@ -4,8 +4,10 @@ import { pool } from "@/db/db";
 export async function authenticate() {
   try {
     const sessionId = (await cookies()).get("session")?.value;
+    console.log(sessionId)
 
     if (!sessionId) {
+      console.log("No session cookie found");
       return null;
     }
   
@@ -23,7 +25,7 @@ export async function authenticate() {
   
     return result.rows[0].user_id;
   } catch (error) {
-    console.error("Auth error");
+    console.error("Auth error", error);
     return null;
   }
 }
