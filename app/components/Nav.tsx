@@ -1,4 +1,5 @@
 import { logout } from "../actions/logout";
+import Link from "next/link";
 type Props = {
   userId?: String;
 };
@@ -8,9 +9,9 @@ const Nav = ({userId}: Props) => {
     <div className="nav py-3 flex justify-center">
       {userId && (
         <>
-          <a>Dashboard</a>
-          <a>Expenses</a>
-          <a>History</a>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/expenses">Expenses</Link>
+          <Link href="history">History</Link>
           <form action={logout}>
             <button type="submit">Log Out</button>
           </form>
@@ -19,8 +20,9 @@ const Nav = ({userId}: Props) => {
       )}
       {!userId && (
         <>
-          <button className="">Login</button>
-          <button className="">Register</button>
+          <Link href="/login">Login</Link>
+          <Link href="/register">Register</Link>
+
         </>
       )}
       </div>
