@@ -1,5 +1,5 @@
-import { pool } from '@/db/db'
-import { authenticate } from '@/lib/auth';
+import { pool } from "@/db/db";
+import { authenticate } from "@/lib/auth";
 import type { Expense, Query } from "@/lib/types";
 
 /** */
@@ -42,14 +42,14 @@ VALUES
 (1, 'Entertainment', 120.00, 6, 2026);`;
 
 /** POST: Save changes made on frontend to database
- * 
+ *
  * Compares new (edited) expenses vs original (loaded on login/registration) expenses, then generates sql based on those differences.
  * Uses id to determine which SQL operation to perform on each change
  * After SQL is generated, sends all in one request
- * 
- * Apparently, given the simplicity of my data, diffing at save time is good. 
- * 
-*/
+ *
+ * Apparently, given the simplicity of my data, diffing at save time is good.
+ *
+ */
 
 /** POST
  * generic post request that will be used by SAVE function
@@ -57,7 +57,7 @@ VALUES
 
 export async function POST(request: Request) {
   let oldExpenses: Expense[];
-  let newExpenses: unknown;
+  let newExpenses: Expense[];
   let userId: number;
   // get user id using authenticate app
   try {
@@ -85,19 +85,19 @@ export async function POST(request: Request) {
   // get new data
   try {
     newExpenses = await request.json();
-    if (!Array.isArray(newExpenses) || !newExpenses.every(isExpense)) {
+    //parse amount as float before validation
+    //because amount is decimal value, it gets read as string in request.json()
+    newExpenses.forEach((expense) => {
+      expense.amount = parseFloat(expense.amount);
+    });
+    //validate
+    if (!Array.isArray(newExpenses) || !newExpenses.every(isNewExpense)) {
       console.error("Invalid request body", newExpenses);
-      return Response.json(
-        { error: "Invalid request body" },
-        { status: 400 }
-      );
+      return Response.json({ error: "Invalid request body" }, { status: 400 });
     }
   } catch (error) {
     console.log("Invalid request body", error);
-    return Response.json(
-      { error: "Invalid request body" },
-      { status: 400 }
-    );
+    return Response.json({ error: "Invalid request body" }, { status: 400 });
   }
 
   // convert to maps for comparison
@@ -223,26 +223,27 @@ export async function GET(req: Request) {
   console.log(userId);
   let checkedUserId: number;
 
-  try { checkedUserId = checkUserId(userId); } // validate user id
-  catch (error) {
-    return Response.json(
-      { error: (error as Error).message },
-      { status: 400 }
-    );
+  try {
+    checkedUserId = checkUserId(userId);
+  } catch (error) {
+    // validate user id
+    return Response.json({ error: (error as Error).message }, { status: 400 });
   }
 
-  const result = await pool.query( // result returns database result object
+  const result = await pool.query(
+    // result returns database result object
     "SELECT * FROM expenses WHERE user_id = $1",
-    [checkedUserId]) // used parsed user id instead of original because ChatGPT recommended to. SQL will auto-parse strings, and with the integer check it should be fine with original but reduces reliability by depending on SQL auto parse
+    [checkedUserId]
+  ); // used parsed user id instead of original because ChatGPT recommended to. SQL will auto-parse strings, and with the integer check it should be fine with original but reduces reliability by depending on SQL auto parse
 
   return Response.json(result.rows); // converts result into json, then sends it as http response
 }
 
 /** DELETE
- * 
+ *
  * Deletes all expenses from table that have matching user_id
  * ONLY USED WHEN USER WANTS TO CLEAR THEIR DATA
- * 
+ *
  */
 export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -253,44 +254,43 @@ export async function DELETE(req: Request) {
     checkedUserId = checkUserId(userId);
 
     // continue...
-
   } catch (error) {
-    return Response.json(
-      { error: (error as Error).message },
-      { status: 400 }
-    );
+    return Response.json({ error: (error as Error).message }, { status: 400 });
   }
 
-  const result = await pool.query( // result returns database result object
+  const result = await pool.query(
+    // result returns database result object
     "DELETE FROM expenses WHERE user_id = $1",
-    [checkedUserId]);
+    [checkedUserId]
+  );
 
   return Response.json({
     success: true,
     message: "Expenses deleted successfully",
-    deletedCount: result.rowCount
+    deletedCount: result.rowCount,
   });
-
 }
 /**
  * HELPER FUNCTION checks user_id for validity
  */
 const checkUserId = (id: any) => {
-  if (!id) { // error handling: null
+  if (!id) {
+    // error handling: null
     throw new Error("user_id is required");
   }
 
-  const parsedUserId = Number(id) // error handling: is integer
+  const parsedUserId = Number(id); // error handling: is integer
   if (!Number.isInteger(parsedUserId)) {
     throw new Error("user_id is not correct datatype");
   }
   return parsedUserId;
-}
+};
 
-function isExpense(expense: any): boolean { // helper function to check request body for correct type. used in POST function
+function isNewExpense(expense: any): boolean {
+  // helper function to check request body for correct type. used in POST function
   return (
     expense &&
-    typeof expense.id === "string" &&
+    (typeof expense.id === "string" || typeof expense.id === "number") &&
     typeof expense.label === "string" &&
     typeof expense.amount === "number" &&
     typeof expense.month === "number" &&

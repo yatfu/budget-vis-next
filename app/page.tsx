@@ -13,7 +13,6 @@ function LandingPage() {
     <>
       <Nav />
       <div className="">
-        <Expenses />
       </div>
       
     </>
