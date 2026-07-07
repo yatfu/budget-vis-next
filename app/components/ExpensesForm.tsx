@@ -34,7 +34,7 @@ const ExpensesForm = (
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(expenses)
+        body: JSON.stringify({expenses, selectedMonth, selectedYear})
       });
       console.log("Response from server:", response);
       if (!response.ok) { // check for error response
@@ -80,7 +80,7 @@ const ExpensesForm = (
       {/* Delete function needs arrow function to pass parameters, addcategory does not, can pass function itself */}
       <div className="income-expenses-form-buttons">
         <button type="button" onClick={addCategory} className="px-5">
-          + Add Category
+          [ + ]
         </button>
         <button type="submit">Submit</button>
       </div>

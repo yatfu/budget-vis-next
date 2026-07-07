@@ -16,3 +16,15 @@ export type Query = {
   sql: string,
   values: unknown[]
 }
+
+export type RegisterState =
+  | {
+      success: true;
+      userId: number;
+      error: null;
+    }
+  | {
+      success: false;
+      userId: null;
+      error: string;
+    };
