@@ -14,10 +14,17 @@ const Expenses = () => {
 
   useEffect(() => {
     (async () => {
+      const cachedExpenses = localStorage.getItem("expenses");
+      if (cachedExpenses) {
+        setExpenses(JSON.parse(cachedExpenses));
+        console.log("Found expenses cached in localstorage")
+        return;
+      }
       const res = await fetch(`/api/expenses`);
       const data = await res.json();
       console.log("EXPENSES DATA:", data);
       setExpenses(data);
+      localStorage.setItem("expenses", JSON.stringify(data));
     })();
   }, []);
 
