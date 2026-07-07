@@ -4,6 +4,7 @@ const ExpensesForm = (
   { expenses, setExpenses, selectedMonth, selectedYear }: 
   ExpenseUseState & {selectedMonth: number; selectedYear: number}) => {
   // { PROPS }
+  
   const handleChange = <K extends keyof Expense>(
     index: number, field: K, value: Expense[K]) => { // 
     const newExpenses = [...expenses];
@@ -48,7 +49,7 @@ const ExpensesForm = (
   return (
     <form onSubmit={handleSubmit}>
       {expenses.map((expense, index) => (
-        <div key={index}>
+        <div key={expense.id}>
           <input
             type="text"
             placeholder="Category Name"
@@ -62,9 +63,10 @@ const ExpensesForm = (
             step="0.01"
             placeholder="Value"
             value={expense.amount}
-            onChange={(e) =>
-              handleChange(index, "amount", parseFloat(e.target.value))
-            }
+            onChange={(e) => {
+              const parsed = parseFloat(e.target.value);
+              handleChange(index, "amount", isNaN(parsed) ? 0 : parsed); // CHATGPT solution to bug: when deleting the entire input, NaN is given to parseFloat which causes error
+            }}
             required
           />
           <button
