@@ -59,6 +59,8 @@ export async function POST(request: Request) {
   let oldExpenses: Expense[];
   let newExpenses: Expense[];
   let userId: number;
+  let selectedMonth: number;
+  let selectedYear: number;
   // get user id using authenticate app
   try {
     userId = await authenticate();
@@ -68,12 +70,51 @@ export async function POST(request: Request) {
         { status: 401 }
       );
     }
+
+    // get new data
+    try {
+      const body = await request.json();
+      newExpenses = body.expenses;
+      console.log(newExpenses);
+      selectedMonth = body.selectedMonth;
+      selectedYear = body.selectedYear;
+      //parse amount as float before validation
+      //because amount is decimal value, it gets read as string in request.json()
+      newExpenses.forEach((expense) => {
+        expense.amount = parseFloat(expense.amount);
+      });
+      //validate expenses
+      if (!Array.isArray(newExpenses) || !newExpenses.every(isNewExpense)) {
+        console.error("Invalid request body: expenses", newExpenses);
+        return Response.json(
+          { error: "Invalid request body: expenses" },
+          { status: 400 }
+        );
+      }
+      //validate month and year
+      else if (
+        typeof selectedMonth !== "number" ||
+        typeof selectedYear !== "number" ||
+        selectedMonth < 1 ||
+        selectedYear < 1 ||
+        selectedMonth > 12
+      ) {
+        console.error("Invalid request body: selectedMonth or selectedYear");
+      }
+    } catch (error) {
+      console.log("Invalid request body", error);
+      return Response.json({ error: "Invalid request body" }, { status: 400 });
+    }
+
     // get old data
     const result = await pool.query<Expense>(
-      "SELECT id, user_id, label, amount, month, year FROM expenses WHERE user_id = $1",
-      [userId]
+      `SELECT id, user_id, label, amount, month, year 
+      FROM expenses 
+      WHERE user_id = $1 
+        AND month = $2 
+        AND year = $3`,
+      [userId, selectedMonth, selectedYear]
     );
-
     oldExpenses = result.rows;
   } catch (error) {
     console.error("Getting old expenses from database failed", error);
@@ -81,23 +122,6 @@ export async function POST(request: Request) {
       { error: "Getting old expenses from database failed" },
       { status: 500 }
     );
-  }
-  // get new data
-  try {
-    newExpenses = await request.json();
-    //parse amount as float before validation
-    //because amount is decimal value, it gets read as string in request.json()
-    newExpenses.forEach((expense) => {
-      expense.amount = parseFloat(expense.amount);
-    });
-    //validate
-    if (!Array.isArray(newExpenses) || !newExpenses.every(isNewExpense)) {
-      console.error("Invalid request body", newExpenses);
-      return Response.json({ error: "Invalid request body" }, { status: 400 });
-    }
-  } catch (error) {
-    console.log("Invalid request body", error);
-    return Response.json({ error: "Invalid request body" }, { status: 400 });
   }
 
   // convert to maps for comparison
