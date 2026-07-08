@@ -5,15 +5,19 @@ import ExpensesChart from "./ExpensesChart";
 import { useState, useEffect } from "react";
 import DateSelector from "./DateSelector";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Expense } from "@/lib/types";
+
+type SortBy = "none" | "amount" | "label";
 
 const Expenses = () => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  
+
   const selectedMonth = Number(searchParams.get("month")) || new Date().getMonth() + 1;
   const selectedYear = Number(searchParams.get("year")) || new Date().getFullYear();
+
   // Write to URL
   const setSelectedMonth = (month: number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -26,12 +30,13 @@ const Expenses = () => {
     params.set("year", String(year));
     router.push(`${pathname}?${params.toString()}`);
   };
-  const [sortBy, setSortBy] = useState("none"); // "amount" | "name"
+
+  const [sortBy, setSortBy] = useState<SortBy>("none");
 
   useEffect(() => {
     (async () => {
       const res = await fetch(`/api/expenses`);
-      const data = await res.json();
+      const data: Expense[] = await res.json();
       console.log("EXPENSES DATA:", data);
       setExpenses(data);
     })();
@@ -44,11 +49,9 @@ const Expenses = () => {
     .sort((a, b) => {
       if (sortBy === "amount") {
         return b.amount - a.amount;
-      } 
-      else if (sortBy === "label") {
+      } else if (sortBy === "label") {
         return a.label.localeCompare(b.label);
-      }
-      else {
+      } else {
         return 0; // means dont sort
       }
     });
@@ -64,22 +67,10 @@ const Expenses = () => {
       <ExpensesChart
         title={"Expenses"}
         labels={filteredExpenses.map((expense) => expense.label)}
-        values={filteredExpenses.map((expense) => parseFloat(expense.amount))}
+        values={filteredExpenses.map((expense) => expense.amount)}
       />
-      <button
-        onClick={() => {
-          setSortBy("label");
-        }}
-      >
-        Name
-      </button>
-      <button
-        onClick={() => {
-          setSortBy("amount");
-        }}
-      >
-        Amount
-      </button>
+      <button onClick={() => setSortBy("label")}>Name</button>
+      <button onClick={() => setSortBy("amount")}>Amount</button>
 
       <ExpensesForm
         expenses={filteredExpenses}
