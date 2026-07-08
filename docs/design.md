@@ -12,5 +12,5 @@ this is the design system for AI to consistently style throughout app
 - Border radius: rounded-lg (containers), rounded-md (inputs/buttons)
 
 ## Components
-- Inputs: bg-zinc-950, border-zinc-800, focus:border-zinc-600
+- Inputs: bg-zinc-950, border-zinc-800, focus:border-zinc-600, [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
 - Buttons: shadcn Button, variant="ghost" for icon-only actions, variant="secondary" for inline actions
