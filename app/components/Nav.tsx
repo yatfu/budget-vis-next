@@ -10,7 +10,6 @@ const Nav = ({userId}: Props) => {
       {userId && (
         <>
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/expenses">Expenses</Link>
           <Link href="history">History</Link>
           <form action={logout}>
             <button type="submit">Log Out</button>

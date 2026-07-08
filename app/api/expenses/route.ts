@@ -259,8 +259,11 @@ export async function GET(req: Request) {
     "SELECT * FROM expenses WHERE user_id = $1",
     [checkedUserId]
   ); // used parsed user id instead of original because ChatGPT recommended to. SQL will auto-parse strings, and with the integer check it should be fine with original but reduces reliability by depending on SQL auto parse
-
-  return Response.json(result.rows); // converts result into json, then sends it as http response
+  const expenses = result.rows.map((row) => ({ // convert amount (SQL decimal -> string -> number)
+    ...row,
+    amount: Number(row.amount),
+  }));
+  return Response.json(expenses); // converts result into json, then sends it as http response
 }
 
 /** DELETE
@@ -321,3 +324,4 @@ function isNewExpense(expense: any): boolean {
     typeof expense.year === "number"
   );
 }
+
