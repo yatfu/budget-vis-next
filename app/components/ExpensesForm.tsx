@@ -1,4 +1,4 @@
-import { Expense, ExpenseUseState, ExpenseRowProps } from "@/lib/types";
+import { Expense, ExpenseUseState } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
 
 const ExpensesForm = ({
@@ -6,6 +6,7 @@ const ExpensesForm = ({
   setExpenses,
   selectedMonth,
   selectedYear,
+  setModalOpen,
 }: ExpenseUseState & { selectedMonth: number; selectedYear: number }) => {
   // { PROPS }
 
@@ -65,6 +66,7 @@ const ExpensesForm = ({
         throw new Error("Failed to save expenses");
       }
       console.log("Submitted expenses:", expenses);
+      setModalOpen(true);
     } catch (error) {
       console.error(error);
     }

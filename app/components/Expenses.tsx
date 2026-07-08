@@ -4,16 +4,19 @@ import ExpensesForm from "./ExpensesForm";
 import ExpensesChart from "./ExpensesChart";
 import { useState, useEffect } from "react";
 import DateSelector from "./DateSelector";
+import Modal from "./Modal";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Expense } from "@/lib/types";
 
 type SortBy = "none" | "amount" | "label";
 
 const Expenses = () => {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   const selectedMonth = Number(searchParams.get("month")) || new Date().getMonth() + 1;
   const selectedYear = Number(searchParams.get("year")) || new Date().getFullYear();
@@ -69,6 +72,7 @@ const Expenses = () => {
         labels={filteredExpenses.map((expense) => expense.label)}
         values={filteredExpenses.map((expense) => expense.amount)}
       />
+      <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
       <button onClick={() => setSortBy("label")}>Name</button>
       <button onClick={() => setSortBy("amount")}>Amount</button>
 
@@ -77,6 +81,7 @@ const Expenses = () => {
         setExpenses={setExpenses}
         selectedMonth={selectedMonth}
         selectedYear={selectedYear}
+        setModalOpen={setModalOpen}
       />
     </div>
   );
