@@ -40,7 +40,7 @@ Neon/Postgres executes query
 CRUD Operations: 
 CREATE (POST, INSERT)
   User: create user given username and password
-  Expenses: create expense category
+  Expenses: create expense
 READ (GET, SELECT)
   read one user given username and password, read all expenses
 UPDATE (PUT, UPDATE)
@@ -158,7 +158,7 @@ environment conflict
 
 Even this:
 
-const data = await prisma.category.findMany();
+const data = await prisma.expenses.findMany();
 
 fails because PrismaClient never successfully finishes initialization.
 
