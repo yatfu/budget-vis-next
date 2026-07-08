@@ -71,7 +71,7 @@ const ExpensesForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
       {expenses.map((expense, index) => (
         <ExpenseRow
           key={expense.id ?? index}
@@ -97,7 +97,7 @@ const ExpensesForm = ({
 
 // prevent enter key from submitting
 const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-  if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
+  if (e.key === "Enter") {
     e.preventDefault();
   }
 };
