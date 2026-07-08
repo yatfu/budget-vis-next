@@ -15,9 +15,6 @@ const DateSelector = ({
 }: DateSelectorProps) => {
   return (
     <div>
-      <h2>
-        {months[selectedMonth]} {selectedYear}
-      </h2>
       <select
         value={selectedMonth}
         onChange={(e) => setSelectedMonth(Number(e.target.value))}

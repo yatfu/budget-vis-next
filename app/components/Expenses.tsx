@@ -4,13 +4,28 @@ import ExpensesForm from "./ExpensesForm";
 import ExpensesChart from "./ExpensesChart";
 import { useState, useEffect } from "react";
 import DateSelector from "./DateSelector";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 const Expenses = () => {
-  const now = new Date();
-
   const [expenses, setExpenses] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState(now.getMonth() + 1); // 1 == january
-  const [selectedYear, setSelectedYear] = useState(now.getFullYear());
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  
+  const selectedMonth = Number(searchParams.get("month")) || new Date().getMonth() + 1;
+  const selectedYear = Number(searchParams.get("year")) || new Date().getFullYear();
+  // Write to URL
+  const setSelectedMonth = (month: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("month", String(month));
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
+  const setSelectedYear = (year: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("year", String(year));
+    router.push(`${pathname}?${params.toString()}`);
+  };
   const [sortBy, setSortBy] = useState("none"); // "amount" | "name"
 
   useEffect(() => {
@@ -38,7 +53,6 @@ const Expenses = () => {
       }
     });
 
-  //<ExpensesForm expenses={expenses} setExpenses={setExpenses} />
   return (
     <div className="expenses">
       <DateSelector
