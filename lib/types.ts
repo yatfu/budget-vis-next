@@ -12,13 +12,21 @@ export type ExpenseUseState = {
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 }
 
-export type ExpenseRowProps {
+export type ExpenseRowProps = {
   expense: Expense;
   index: number;
   onAddAmount: (index: number, delta: number) => void;
   onAddExpense: (label: string, amount: number) => void;
   onChangeExpense: <K extends keyof Expense>(index: number, field: K, value: Expense[K]) => void;
   onDeleteExpense: (index: number) => void;
+}
+
+export type Budget = {
+  id: number | string; // string is for temp values,
+  user_id: number | string; // string is for temp values
+  amount: number;
+  month: number;
+  year: number;
 }
 
 export type Query = {
