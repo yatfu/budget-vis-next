@@ -18,7 +18,7 @@ export default function ExpenseRow({
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2">
+    <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-1 py-1">
       <Button
         type="button"
         variant="ghost"
@@ -52,7 +52,7 @@ export default function ExpenseRow({
         className="w-28 rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-right text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-600 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       />
 
-      <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-2">
+      <div className="flex items-center border-l border-zinc-800 pl-2">
         <input
           type="number"
           placeholder="Add"
