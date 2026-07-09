@@ -18,13 +18,13 @@ export default function ExpenseRow({
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-1 py-1">
+    <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-1 py-1">
       <Button
         type="button"
         variant="ghost"
         size="icon"
         onClick={() => onDeleteExpense(index)}
-        className="text-zinc-500 hover:text-red-400 hover:bg-red-950"
+        className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
       >
         ✕
       </Button>
@@ -35,7 +35,7 @@ export default function ExpenseRow({
         value={expense.label}
         onChange={(e) => onChangeExpense(index, "label", e.target.value)}
         required
-        className="min-w-0 flex-1 rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-600"
+        className="min-w-0 flex-1 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring"
       />
 
       <input
@@ -49,10 +49,10 @@ export default function ExpenseRow({
           onChangeExpense(index, "amount", isNaN(parsed) ? 0 : parsed);
         }}
         required
-        className="w-28 rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-right text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-600 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className="w-28 rounded-md border border-input bg-background px-3 py-1.5 text-right text-sm text-foreground placeholder:text-muted-foreground focus:border-ring [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       />
 
-      <div className="flex items-center border-l border-zinc-800 pl-2">
+      <div className="flex items-center border-l border-border pl-2">
         <input
           type="number"
           placeholder="Add"
@@ -61,7 +61,7 @@ export default function ExpenseRow({
             const parsed = parseFloat(e.target.value);
             setAmount(isNaN(parsed) ? 0 : parsed);
           }}
-          className="w-20 rounded-md border border-zinc-800 bg-zinc-950 px-2 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-zinc-600 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-20 rounded-md border border-input bg-background px-2 py-1.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <Button
           type="button"

@@ -47,9 +47,6 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
-div {
-  border: 1px dotted white;
-}
 
 :root {
   --background: oklch(1 0 0);
