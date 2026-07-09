@@ -62,7 +62,5 @@ export async function login(formData: FormData) {
     maxAge: SESSION_LENGTH, //
   });
   console.log("Cookies set");
-
-  console.log(user);
   return { id: user.id, username: user.username };
 }

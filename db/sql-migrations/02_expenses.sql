@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS expenses (
   amount NUMERIC(10, 2) NOT NULL,
   
   month INTEGER NOT NULL CHECK (month BETWEEN 1 AND 12),
-  year INTEGER NOT NULL CHECK (year BETWEEN 1950 AND 2100),
+  year INTEGER NOT NULL CHECK (year >= 0),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- for debugging/analytics
 );
