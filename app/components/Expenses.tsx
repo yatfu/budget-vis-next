@@ -51,7 +51,7 @@ const Expenses = () => {
     .slice() // copy
     .sort((a, b) => {
       if (sortBy === "amount") {
-        return b.amount - a.amount;
+        return a.amount - b.amount;
       } else if (sortBy === "label") {
         return a.label.localeCompare(b.label);
       } else {
