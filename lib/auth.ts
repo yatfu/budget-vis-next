@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
 import { pool } from "@/db/db";
+import { cache } from "react";
 
-export async function authenticate() {
+export const authenticate = cache(async () => {
   try {
     const sessionId = (await cookies()).get("session")?.value;
     console.log(sessionId)
@@ -28,4 +29,4 @@ export async function authenticate() {
     console.error("Auth error", error);
     return null;
   }
-}
+})
