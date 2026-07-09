@@ -5,7 +5,7 @@ import { cache } from "react";
 export const authenticate = cache(async () => {
   try {
     const sessionId = (await cookies()).get("session")?.value;
-    console.log(sessionId)
+    console.log('Authenticating...')
 
     if (!sessionId) {
       console.log("No session cookie found");

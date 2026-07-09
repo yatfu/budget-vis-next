@@ -75,7 +75,6 @@ export async function POST(request: Request) {
     try {
       const body = await request.json();
       newExpenses = body.expenses;
-      console.log(newExpenses);
       selectedMonth = body.selectedMonth;
       selectedYear = body.selectedYear;
       //parse amount as float before validation
@@ -235,6 +234,8 @@ export async function POST(request: Request) {
     client.release();
   }
 
+  console.log('Expenses saved')
+
   return Response.json({
     inserted: insertResults,
     updated: updateResults,
@@ -244,7 +245,6 @@ export async function POST(request: Request) {
 
 export async function GET(req: Request) {
   const userId = await authenticate();
-  console.log(userId);
   let checkedUserId: number;
 
   try {

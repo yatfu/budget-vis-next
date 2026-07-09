@@ -63,22 +63,3 @@ export async function GET(req: Request) {
   const result = await pool.query("SELECT * FROM users");
   return Response.json(result.rows);
 }
-
-
-/**
-
-fetch("/api/users", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    username: "testuser",
-    password: "123456"
-  })
-})
-.then(res => res.json())
-.then(console.log);
-
-
- */

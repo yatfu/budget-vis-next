@@ -51,6 +51,7 @@ const ExpensesForm = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      console.log('Submitting...')
       console.log(JSON.stringify(expenses));
       const response = await fetch("/api/expenses", {
         // save expenses
