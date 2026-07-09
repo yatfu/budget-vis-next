@@ -33,7 +33,7 @@ const DateSelector = ({
         <option value={12}>December</option>
         {/* ... */}
       </select>
-      <input
+      <input className="w-20"
         type="number"
         value={selectedYear}
         onChange={(e) => setSelectedYear(Number(e.target.value))}
