@@ -31,7 +31,7 @@ export default async function RootLayout({
   const userId = await authenticate();
   
   return (
-    <html lang="en" className={cn("font-sans", "dark", inter.variable)}>
+    <html lang="en" className={cn("font-sans", "dark", "max-w-250 m-auto px-3", inter.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

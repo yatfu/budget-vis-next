@@ -14,15 +14,17 @@ function getBudgetColor(value: number, budget: number): string {
   const orangeHue = 55;
   const lightness = 0.65;
 
-  const maxChroma = 0.2;
+  const maxChroma = 0.16;
   const minChroma = 0.06; // floor — never fully gray
 
-  if (t <= 0.5) {
-    const stageT = t / 0.5;
+  const threshold = 0.55; // blue now covers 0–70% of budget, orange only kicks in for the last 30%
+
+  if (t <= threshold) {
+    const stageT = t / threshold;
     const chroma = maxChroma - (maxChroma - minChroma) * stageT;
     return `oklch(${lightness} ${chroma} ${blueHue})`;
   } else {
-    const stageT = (t - 0.5) / 0.5;
+    const stageT = (t - threshold) / (1 - threshold);
     const chroma = minChroma + (maxChroma - minChroma) * stageT;
     return `oklch(${lightness} ${chroma} ${orangeHue})`;
   }
@@ -49,7 +51,7 @@ const ExpensesChart = ({ labels, values, budget }: {labels: string[], values: nu
   // fixed bug where rendering wasnt happening because i was changing props
   const chartLabels = [...labels, "Remaining Budget"];
   const chartValues = [...values, getRemainingBudget(values, budget)];
-  const chartColors = [...colors, "oklch(69.6% 0.17 162.5)"]; // hardcoded color
+  const chartColors = [...colors, "oklch(69.6% 0.25 162.5)"]; // hardcoded color
 
   const data = {
     labels: chartLabels,
@@ -65,7 +67,10 @@ const ExpensesChart = ({ labels, values, budget }: {labels: string[], values: nu
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     cutout: "40%",
+    offset: chartValues.map((_, i) =>
+    i === chartValues.length - 1 ? 50 : 0), // pop out the last segment (Remaining Budget)
     plugins: {
       legend: {
         position: "right",
@@ -77,7 +82,7 @@ const ExpensesChart = ({ labels, values, budget }: {labels: string[], values: nu
   };
 
   return (
-    <div className="income-expenses-chart">
+    <div className="h-100">
       <Doughnut data={data} options={options} />
     </div>
   );

@@ -13,9 +13,9 @@ export default async function Dashboard({ searchParams }: props)  {
     Number(params.year) || new Date().getFullYear();
 
   return (
-    <>
+    <div>
       <h2>{months[selectedMonth]} {selectedYear}</h2>
       <Expenses />
-    </>
+    </div>
   );
 }
