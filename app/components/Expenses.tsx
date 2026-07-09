@@ -34,7 +34,7 @@ const Expenses = () => {
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  const [sortBy, setSortBy] = useState<SortBy>("none");
+  const [sortBy, setSortBy] = useState<SortBy>("amount");
 
   useEffect(() => {
     (async () => {
@@ -68,9 +68,9 @@ const Expenses = () => {
         setSelectedYear={setSelectedYear}
       />
       <ExpensesChart
-        title={"Expenses"}
         labels={filteredExpenses.map((expense) => expense.label)}
         values={filteredExpenses.map((expense) => expense.amount)}
+        budget={5000}
       />
       <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
       <button onClick={() => setSortBy("label")}>Name</button>
