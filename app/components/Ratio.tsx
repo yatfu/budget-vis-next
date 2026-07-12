@@ -46,7 +46,7 @@ const Ratio = () => {
   };
 
   return (
-    <div className="ratio">
+    <div className="ratio rounded-lg border border-border bg-card px-1 py-1">
       <Bar data={data} options={options} />
     </div>
   );

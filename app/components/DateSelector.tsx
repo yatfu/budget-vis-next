@@ -1,4 +1,4 @@
-import { months } from '@/lib/utils'
+import { months, inputStyles, cn } from '@/lib/utils'
 
 type DateSelectorProps = {
   selectedMonth: number;
@@ -14,10 +14,11 @@ const DateSelector = ({
   setSelectedYear,
 }: DateSelectorProps) => {
   return (
-    <div>
+    <div className="flex items-center gap-1">
       <select
         value={selectedMonth}
         onChange={(e) => setSelectedMonth(Number(e.target.value))}
+        className={inputStyles}
       >
         <option value={1}>January</option>
         <option value={2}>February</option>
@@ -33,7 +34,8 @@ const DateSelector = ({
         <option value={12}>December</option>
         {/* ... */}
       </select>
-      <input className="w-20"
+      <input
+        className={cn("w-20", inputStyles)}
         type="number"
         value={selectedYear}
         onChange={(e) => setSelectedYear(Number(e.target.value))}

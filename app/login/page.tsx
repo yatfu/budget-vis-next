@@ -2,6 +2,7 @@ import { login } from '@/app/actions/login'
 import { authenticate } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import Link from "next/link";
+import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 /**
  * Login Page
@@ -13,24 +14,26 @@ export default async function LoginPage() {
         redirect("/dashboard");
     }
     return (
-        <>
-            <form className="login-form" action={login}>
-                <div>
-                    <label>Username</label>
-                    <input type="text" name="username" required />
-                </div>
+        <div className="flex justify-center py-3">
+            <div className="flex flex-col gap-1 rounded-lg border border-border bg-card px-1 py-1">
+                <form className="login-form flex flex-col gap-1" action={login}>
+                    <div className="flex flex-col gap-1">
+                        <label className="text-sm text-muted-foreground">Username</label>
+                        <input type="text" name="username" required className={inputStyles} />
+                    </div>
 
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" required />
-                </div>
+                    <div className="flex flex-col gap-1">
+                        <label className="text-sm text-muted-foreground">Password</label>
+                        <input type="password" name="password" required className={inputStyles} />
+                    </div>
 
-                <button type="submit">Log In</button>
-            </form>
-            <Link href="/register">
-                <button>Register</button>
-            </Link>
-        </>
+                    <button type="submit" className={cn(buttonBase, buttonVariants.default, buttonSizes.default)}>Log In</button>
+                </form>
+                <Link href="/register" className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}>
+                    Register
+                </Link>
+            </div>
+        </div>
     );
 }
 

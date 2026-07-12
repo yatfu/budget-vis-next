@@ -13,8 +13,8 @@ export default async function Dashboard({ searchParams }: props)  {
     Number(params.year) || new Date().getFullYear();
 
   return (
-    <div>
-      <h2>{months[selectedMonth]} {selectedYear}</h2>
+    <div className="flex flex-col gap-1">
+      <h2 className="text-foreground text-lg font-medium">{months[selectedMonth]} {selectedYear}</h2>
       <Expenses />
     </div>
   );

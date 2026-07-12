@@ -1,5 +1,6 @@
 import { Expense, ExpenseUseState } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
+import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 const ExpensesForm = ({
   expenses,
@@ -74,7 +75,7 @@ const ExpensesForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+    <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="flex flex-col gap-1">
       {expenses.map((expense, index) => (
         <ExpenseRow
           key={expense.id ?? index}
@@ -87,11 +88,17 @@ const ExpensesForm = ({
         />
       ))}
       {/* Delete function needs arrow function to pass parameters, addExpense does not, can pass function itself */}
-      <div className="income-expenses-form-buttons">
-        <button type="button" onClick={addExpense} className="px-5">
-          [ + ]
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={addExpense}
+          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
+        >
+          + Add Expense
         </button>
-        <button type="submit">Submit</button>
+        <button type="submit" className={cn(buttonBase, buttonVariants.default, buttonSizes.default)}>
+          Submit
+        </button>
       </div>
     </form>
   );

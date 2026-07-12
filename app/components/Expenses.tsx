@@ -7,6 +7,7 @@ import DateSelector from "./DateSelector";
 import Modal from "./Modal";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Expense } from "@/lib/types";
+import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 type SortBy = "none" | "amount" | "label";
 
@@ -60,21 +61,37 @@ const Expenses = () => {
     });
 
   return (
-    <div className="expenses">
+    <div className="expenses flex flex-col gap-1">
       <DateSelector
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
       />
-      <ExpensesChart
-        labels={filteredExpenses.map((expense) => expense.label)}
-        values={filteredExpenses.map((expense) => expense.amount)}
-        budget={5000}
-      />
+      <div className="rounded-lg border border-border bg-card px-1 py-1">
+        <ExpensesChart
+          labels={filteredExpenses.map((expense) => expense.label)}
+          values={filteredExpenses.map((expense) => expense.amount)}
+          budget={5000}
+        />
+      </div>
       <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
-      <button onClick={() => setSortBy("label")}>Name</button>
-      <button onClick={() => setSortBy("amount")}>Amount</button>
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => setSortBy("label")}
+          className={cn(buttonBase, sortBy === "label" ? buttonVariants.secondary : buttonVariants.ghost, buttonSizes.sm)}
+        >
+          Name
+        </button>
+        <button
+          type="button"
+          onClick={() => setSortBy("amount")}
+          className={cn(buttonBase, sortBy === "amount" ? buttonVariants.secondary : buttonVariants.ghost, buttonSizes.sm)}
+        >
+          Amount
+        </button>
+      </div>
 
       <ExpensesForm
         expenses={filteredExpenses}
