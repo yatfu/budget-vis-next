@@ -1,7 +1,7 @@
 "use client";
 import { useActionState } from "react";
 import { register } from "../actions/register";
-import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
+import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
 
 export default function Register() {
   const [state, formAction] = useActionState(register, {
@@ -13,7 +13,7 @@ export default function Register() {
   return (
     <div className="flex justify-center py-3">
       <form
-        className="register-form flex flex-col gap-1 rounded-lg border border-border bg-card px-1 py-1"
+        className={cn("register-form flex flex-col gap-1", cardStyles)}
         action={formAction}
       >
         <div className="flex flex-col gap-1">

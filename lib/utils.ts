@@ -11,6 +11,9 @@ export function cn(...inputs: ClassValue[]) {
 export const inputStyles =
   "bg-zinc-950 border border-zinc-800 rounded-md focus:border-zinc-600 focus:outline-none px-2 py-1 text-sm text-foreground placeholder:text-muted-foreground [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none";
 
+// shared container styling per docs/design.md (rows, cards, form panels)
+export const cardStyles = "rounded-lg border border-border bg-card px-1 py-1";
+
 // shared plain-html button styling (variant="secondary" for inline actions, variant="ghost" for icon-only actions, per docs/design.md)
 export const buttonBase =
   "inline-flex items-center justify-center gap-1 rounded-md text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";

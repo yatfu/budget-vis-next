@@ -4,10 +4,11 @@ import ExpensesForm from "./ExpensesForm";
 import ExpensesChart from "./ExpensesChart";
 import { useState, useEffect } from "react";
 import DateSelector from "./DateSelector";
+import Budget from "./Budget";
 import Modal from "./Modal";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Expense } from "@/lib/types";
-import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
+import { cn, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
 
 type SortBy = "none" | "amount" | "label";
 
@@ -16,6 +17,7 @@ const Expenses = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [budget, setBudget] = useState<number>(1000); // default budget
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -68,7 +70,12 @@ const Expenses = () => {
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
       />
-      <div className="rounded-lg border border-border bg-card px-1 py-1">
+      <div className="flex items-center gap-1">
+        <p className="text-sm font-medium">Budget</p>
+        <Budget budget={budget} setBudget={setBudget} />
+      </div>
+
+      <div className={cardStyles}>
         <ExpensesChart
           labels={filteredExpenses.map((expense) => expense.label)}
           values={filteredExpenses.map((expense) => expense.amount)}
@@ -77,20 +84,15 @@ const Expenses = () => {
       </div>
       <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
       <div className="flex items-center gap-1">
-        <button
-          type="button"
-          onClick={() => setSortBy("label")}
-          className={cn(buttonBase, sortBy === "label" ? buttonVariants.secondary : buttonVariants.ghost, buttonSizes.sm)}
+        <p className="text-sm font-medium">Sort By</p>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as SortBy)}
+          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
         >
-          Name
-        </button>
-        <button
-          type="button"
-          onClick={() => setSortBy("amount")}
-          className={cn(buttonBase, sortBy === "amount" ? buttonVariants.secondary : buttonVariants.ghost, buttonSizes.sm)}
-        >
-          Amount
-        </button>
+          <option value="label">Name</option>
+          <option value="amount">Amount</option>
+        </select>
       </div>
 
       <ExpensesForm

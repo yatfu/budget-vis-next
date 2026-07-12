@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { cn, cardStyles } from '@/lib/utils';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -46,7 +47,7 @@ const Ratio = () => {
   };
 
   return (
-    <div className="ratio rounded-lg border border-border bg-card px-1 py-1">
+    <div className={cn("ratio", cardStyles)}>
       <Bar data={data} options={options} />
     </div>
   );

@@ -1,6 +1,6 @@
 import { ExpenseRowProps } from "@/lib/types";
 import { useState } from "react";
-import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
+import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
 import { X } from "lucide-react";
 
 export default function ExpenseRow({
@@ -19,7 +19,7 @@ export default function ExpenseRow({
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-1 py-1">
+    <div className={cn("flex items-center gap-1", cardStyles)}>
       <button
         type="button"
         onClick={() => onDeleteExpense(index)}
