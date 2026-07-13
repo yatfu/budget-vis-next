@@ -71,33 +71,23 @@ const Expenses = () => {
         setSelectedYear={setSelectedYear}
       />
       <div className="flex items-center gap-1">
-        <p className="text-sm font-medium">Budget</p>
-        <Budget budget={budget} setBudget={setBudget} />
       </div>
 
       <div className={cardStyles}>
         <ExpensesChart
           labels={filteredExpenses.map((expense) => expense.label)}
           values={filteredExpenses.map((expense) => expense.amount)}
-          budget={5000}
+          budget={budget}
         />
       </div>
       <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
-      <div className="flex items-center gap-1">
-        <p className="text-sm font-medium">Sort By</p>
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as SortBy)}
-          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
-        >
-          <option value="label">Name</option>
-          <option value="amount">Amount</option>
-        </select>
-      </div>
-
       <ExpensesForm
         expenses={filteredExpenses}
         setExpenses={setExpenses}
+        budget={budget}
+        setBudget={setBudget}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
         selectedMonth={selectedMonth}
         selectedYear={selectedYear}
         setModalOpen={setModalOpen}

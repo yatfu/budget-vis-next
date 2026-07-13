@@ -1,14 +1,17 @@
 import { Expense, ExpenseUseState } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
+import Budget from "./Budget";
 import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 const ExpensesForm = ({
   expenses,
   setExpenses,
+  budget, setBudget,
+  sortBy, setSortBy,
   selectedMonth,
   selectedYear,
   setModalOpen,
-}: ExpenseUseState & { selectedMonth: number; selectedYear: number }) => {
+}: ExpenseUseState & {budget: number; setBudget: React.Dispatch<React.SetStateAction<number>>; selectedMonth: number; selectedYear: number }) => {
   // { PROPS }
 
   const handleChange = <K extends keyof Expense>(
@@ -76,6 +79,23 @@ const ExpensesForm = ({
 
   return (
     <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="flex flex-col gap-1">
+      <div className="flex justify-between gap-1">
+              <div className="flex items-center gap-1">
+        <p className="text-sm font-medium">Budget</p>
+        <Budget budget={budget} setBudget={setBudget} />
+      </div>
+      <div className="flex items-center gap-1">
+        <p className="text-sm font-medium">Sort By</p>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as SortBy)}
+          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
+        >
+          <option value="label">Name</option>
+          <option value="amount">Amount</option>
+        </select>
+      </div>
+      </div>
       {expenses.map((expense, index) => (
         <ExpenseRow
           key={expense.id ?? index}
