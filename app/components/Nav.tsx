@@ -1,12 +1,12 @@
 import { logout } from "../actions/logout";
 import Link from "next/link";
-import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
+import { cn, buttonBase, buttonVariants, buttonSizes, borderless } from "@/lib/utils";
 
 type Props = {
   userId?: String;
 };
 
-const navLinkStyles = cn(buttonBase, buttonVariants.ghost, buttonSizes.default);
+const navLinkStyles = cn(buttonBase, buttonVariants.ghost, buttonSizes.default, borderless);
 
 const Nav = ({userId}: Props) => {
   return (
@@ -16,7 +16,7 @@ const Nav = ({userId}: Props) => {
           <Link href="/dashboard" className={navLinkStyles}>Dashboard</Link>
           <Link href="history" className={navLinkStyles}>History</Link>
           <form action={logout}>
-            <button type="submit" className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}>Log Out</button>
+            <button type="submit" className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default, borderless)}>Log Out</button>
           </form>
         </>
 

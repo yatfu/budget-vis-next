@@ -18,8 +18,12 @@ shadcn was removed from this project — components are plain HTML styled with T
   - variant="ghost" for icon-only actions
   - variant="secondary" for inline actions
   - variant="default" for the primary/submit action in a form
+- `borderless` — appends `border-transparent` to hide the border on a `cardStyles`/`inputStyles`/`buttonBase` element while keeping its border width/radius (no layout shift). Used for elements that should sit flush with their surroundings instead of looking like their own bordered box:
+  - the `X` delete icon button in `ExpenseRow`
+  - all navbar elements in `Nav` (Dashboard/History/Login/Register links, Log Out button)
 
 ## Components
 - Any new rounded-border container (card, row, form panel) should use `cardStyles`, not a hand-written rounded-lg/border-border/bg-card string
 - Any new input or select should use `inputStyles`
 - Any new button/button-like link should use `buttonBase` + a `buttonVariants` entry + a `buttonSizes` entry
+- If a button/input/container shouldn't show a border (e.g. it sits inline in a toolbar/navbar rather than as its own box), append `borderless` instead of omitting the border classes by hand

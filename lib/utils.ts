@@ -14,6 +14,9 @@ export const inputStyles =
 // shared container styling per docs/design.md (rows, cards, form panels)
 export const cardStyles = "rounded-lg border border-border bg-card px-1 py-1";
 
+// removes the visible border from cardStyles/inputStyles/buttonBase while keeping their layout (border width/radius) intact — compose after the base, e.g. cn(buttonBase, buttonVariants.ghost, borderless)
+export const borderless = "border-transparent";
+
 // shared plain-html button styling (variant="secondary" for inline actions, variant="ghost" for icon-only actions, per docs/design.md)
 export const buttonBase =
   "inline-flex items-center justify-center gap-1 rounded-md border border-border text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";

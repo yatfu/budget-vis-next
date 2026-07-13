@@ -1,6 +1,6 @@
 import { ExpenseRowProps } from "@/lib/types";
 import { useState } from "react";
-import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
+import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles, borderless } from "@/lib/utils";
 import { X } from "lucide-react";
 
 export default function ExpenseRow({
@@ -23,7 +23,7 @@ export default function ExpenseRow({
       <button
         type="button"
         onClick={() => onDeleteExpense(index)}
-        className={cn(buttonBase, buttonVariants.ghost, buttonSizes.icon, "text-muted-foreground hover:text-destructive hover:bg-destructive/10")}
+        className={cn(buttonBase, buttonVariants.ghost, buttonSizes.icon, borderless, "text-muted-foreground hover:text-destructive hover:bg-destructive/10")}
       >
         <X />
       </button>
