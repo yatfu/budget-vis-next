@@ -7,7 +7,13 @@ import DateSelector from "./DateSelector";
 import Modal from "./Modal";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Expense, Budget } from "@/lib/types";
-import { cn, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
+import {
+  cn,
+  buttonBase,
+  buttonVariants,
+  buttonSizes,
+  cardStyles,
+} from "@/lib/utils";
 
 type SortBy = "none" | "amount" | "label";
 
@@ -20,8 +26,10 @@ const Expenses = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
-  const selectedMonth = Number(searchParams.get("month")) || new Date().getMonth() + 1;
-  const selectedYear = Number(searchParams.get("year")) || new Date().getFullYear();
+  const selectedMonth =
+    Number(searchParams.get("month")) || new Date().getMonth() + 1;
+  const selectedYear =
+    Number(searchParams.get("year")) || new Date().getFullYear();
 
   // Write to URL
   const setSelectedMonth = (month: number) => {
@@ -41,7 +49,8 @@ const Expenses = () => {
   useEffect(() => {
     (async () => {
       const res = await fetch(`/api/expenses`);
-      const { expenses, budgets }: { expenses: Expense[], budgets: Budget[] } = await res.json();
+      const { expenses, budgets }: { expenses: Expense[]; budgets: Budget[] } =
+        await res.json();
       console.log("EXPENSES DATA:", expenses);
       setExpenses(expenses);
       console.log("BUDGETS DATA:", budgets);
@@ -63,9 +72,9 @@ const Expenses = () => {
       }
     });
 
-    const filteredBudgets = budgets
-      .filter((budget) => budget.month === selectedMonth)
-      .filter((budget) => budget.year === selectedYear);
+  const filteredBudgets = budgets
+    .filter((budget) => budget.month === selectedMonth)
+    .filter((budget) => budget.year === selectedYear);
 
   return (
     <div className="expenses flex flex-col gap-1">
@@ -75,8 +84,7 @@ const Expenses = () => {
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
       />
-      <div className="flex items-center gap-1">
-      </div>
+      <div className="flex items-center gap-1"></div>
 
       <div className={cardStyles}>
         <ExpensesChart
@@ -85,12 +93,16 @@ const Expenses = () => {
           budget={filteredBudgets[0]?.amount ?? 0}
         />
       </div>
-      <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
+      <Modal
+        isModalOpen={isModalOpen}
+        setModalOpen={setModalOpen}
+        message="Expenses saved"
+      />
       <ExpensesForm
         expenses={filteredExpenses}
         setExpenses={setExpenses}
-        budget={filteredBudgets[0]?.amount ?? 0}
-        setBudget={setBudgets}
+        budgets={budgets}
+        setBudgets={setBudgets}
         sortBy={sortBy}
         setSortBy={setSortBy}
         selectedMonth={selectedMonth}

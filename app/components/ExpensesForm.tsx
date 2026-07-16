@@ -1,17 +1,17 @@
-import { Expense, ExpenseUseState } from "@/lib/types";
+import { Expense, ExpenseUseState, Budget } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
-import Budget from "./Budget";
+import BudgetForm from "./BudgetForm";
 import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 const ExpensesForm = ({
   expenses,
   setExpenses,
-  budget, setBudget,
+  budgets, setBudgets,
   sortBy, setSortBy,
   selectedMonth,
   selectedYear,
   setModalOpen,
-}: ExpenseUseState & {budget: number; setBudget: React.Dispatch<React.SetStateAction<number>>; selectedMonth: number; selectedYear: number }) => {
+}: ExpenseUseState & {budgets: Budget[]; setBudgets: React.Dispatch<React.SetStateAction<Budget>>; selectedMonth: number; selectedYear: number }) => {
   // { PROPS }
 
   const handleChange = <K extends keyof Expense>(
@@ -82,7 +82,9 @@ const ExpensesForm = ({
       <div className="flex justify-between gap-1">
               <div className="flex items-center gap-1">
         <p className="text-sm font-medium">Budget</p>
-        <Budget budget={budget} setBudget={setBudget} />
+
+        <BudgetForm budgets={budgets} setBudgets={setBudgets} selectedMonth={selectedMonth} selectedYear={selectedYear} />
+        
       </div>
       <div className="flex items-center gap-1">
         <p className="text-sm font-medium">Sort By</p>
