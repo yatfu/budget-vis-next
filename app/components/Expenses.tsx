@@ -4,10 +4,9 @@ import ExpensesForm from "./ExpensesForm";
 import ExpensesChart from "./ExpensesChart";
 import { useState, useEffect } from "react";
 import DateSelector from "./DateSelector";
-import Budget from "./Budget";
 import Modal from "./Modal";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { Expense } from "@/lib/types";
+import { Expense, Budget } from "@/lib/types";
 import { cn, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
 
 type SortBy = "none" | "amount" | "label";
@@ -17,7 +16,7 @@ const Expenses = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [budget, setBudget] = useState<number>(1000); // default budget
+  const [budgets, setBudgets] = useState<Budget[]>([]); // default budget
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -42,9 +41,11 @@ const Expenses = () => {
   useEffect(() => {
     (async () => {
       const res = await fetch(`/api/expenses`);
-      const data: Expense[] = await res.json();
-      console.log("EXPENSES DATA:", data);
-      setExpenses(data);
+      const { expenses, budgets }: { expenses: Expense[], budgets: Budget[] } = await res.json();
+      console.log("EXPENSES DATA:", expenses);
+      setExpenses(expenses);
+      console.log("BUDGETS DATA:", budgets);
+      setBudgets(budgets);
     })();
   }, []);
 
@@ -62,6 +63,10 @@ const Expenses = () => {
       }
     });
 
+    const filteredBudgets = budgets
+      .filter((budget) => budget.month === selectedMonth)
+      .filter((budget) => budget.year === selectedYear);
+
   return (
     <div className="expenses flex flex-col gap-1">
       <DateSelector
@@ -77,15 +82,15 @@ const Expenses = () => {
         <ExpensesChart
           labels={filteredExpenses.map((expense) => expense.label)}
           values={filteredExpenses.map((expense) => expense.amount)}
-          budget={budget}
+          budget={filteredBudgets[0]?.amount ?? 0}
         />
       </div>
       <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} message="Expenses saved" />
       <ExpensesForm
         expenses={filteredExpenses}
         setExpenses={setExpenses}
-        budget={budget}
-        setBudget={setBudget}
+        budget={filteredBudgets[0]?.amount ?? 0}
+        setBudget={setBudgets}
         sortBy={sortBy}
         setSortBy={setSortBy}
         selectedMonth={selectedMonth}
