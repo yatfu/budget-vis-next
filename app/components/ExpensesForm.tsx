@@ -91,12 +91,14 @@ const ExpensesForm = ({
     .filter((budget: Budget) => budget.year === selectedYear)[0];
 
   const handleBudgetChange = (newAmount: number) => {
+    const tempId = "temp" + crypto.randomUUID(); // temp id is used to match type
     if (!filteredBudget) {
-
+      const newBudgets: Budget[] = [...budgets];
+      newBudgets.push({id: tempId, user_id: tempId, amount: newAmount, month: selectedMonth, year: selectedYear})
+      setBudgets(newBudgets);
     }
     else {
       const newBudgets = budgets.map(b => b.id === filteredBudget.id ? { ...b, amount: newAmount } : b);
-      console.log(newBudgets);
       setBudgets(newBudgets);
     }
   }
