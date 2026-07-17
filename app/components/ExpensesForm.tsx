@@ -3,15 +3,24 @@ import ExpenseRow from "./ExpenseRow";
 import BudgetForm from "./BudgetForm";
 import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
+import { inputStyles } from "@/lib/utils";
+
 const ExpensesForm = ({
   expenses,
   setExpenses,
-  budgets, setBudgets,
-  sortBy, setSortBy,
+  budgets,
+  setBudgets,
+  sortBy,
+  setSortBy,
   selectedMonth,
   selectedYear,
   setModalOpen,
-}: ExpenseUseState & {budgets: Budget[]; setBudgets: React.Dispatch<React.SetStateAction<Budget>>; selectedMonth: number; selectedYear: number }) => {
+}: ExpenseUseState & {
+  budgets: Budget[];
+  setBudgets: React.Dispatch<Budget[]>;
+  selectedMonth: number;
+  selectedYear: number;
+}) => {
   // { PROPS }
 
   const handleChange = <K extends keyof Expense>(
@@ -55,7 +64,7 @@ const ExpensesForm = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log('Submitting...')
+      console.log("Submitting...");
       console.log(JSON.stringify(expenses));
       const response = await fetch("/api/expenses", {
         // save expenses
@@ -77,26 +86,56 @@ const ExpensesForm = ({
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="flex flex-col gap-1">
-      <div className="flex justify-between gap-1">
-              <div className="flex items-center gap-1">
-        <p className="text-sm font-medium">Budget</p>
+  const filteredBudget = budgets
+    .filter((budget: Budget) => budget.month === selectedMonth)
+    .filter((budget: Budget) => budget.year === selectedYear)[0];
 
-        <BudgetForm budgets={budgets} setBudgets={setBudgets} selectedMonth={selectedMonth} selectedYear={selectedYear} />
-        
-      </div>
-      <div className="flex items-center gap-1">
-        <p className="text-sm font-medium">Sort By</p>
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as SortBy)}
-          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
-        >
-          <option value="label">Name</option>
-          <option value="amount">Amount</option>
-        </select>
-      </div>
+  const handleBudgetChange = (newAmount: number) => {
+    if (!filteredBudget) {
+
+    }
+    else {
+      const newBudgets = budgets.map(b => b.id === filteredBudget.id ? { ...b, amount: newAmount } : b);
+      console.log(newBudgets);
+      setBudgets(newBudgets);
+    }
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
+      className="flex flex-col gap-1"
+    >
+      <div className="flex justify-between gap-1">
+        <div className="flex items-center gap-1">
+          <p className="text-sm font-medium">Budget</p>
+
+          <div className="flex items-center gap-1">
+            <input
+              type="number"
+              placeholder="Budget"
+              value={filteredBudget?.amount ?? 5000}
+              onChange={(e) => handleBudgetChange(Number(e.target.value))}
+              className={cn("w-28 text-right", inputStyles)}
+            />
+          </div>
+        </div>
+        <div className="flex items-center gap-1">
+          <p className="text-sm font-medium">Sort By</p>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as SortBy)}
+            className={cn(
+              buttonBase,
+              buttonVariants.secondary,
+              buttonSizes.default
+            )}
+          >
+            <option value="label">Name</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
       </div>
       {expenses.map((expense, index) => (
         <ExpenseRow
@@ -114,18 +153,28 @@ const ExpensesForm = ({
         <button
           type="button"
           onClick={addExpense}
-          className={cn(buttonBase, buttonVariants.secondary, buttonSizes.default)}
+          className={cn(
+            buttonBase,
+            buttonVariants.secondary,
+            buttonSizes.default
+          )}
         >
           + Add Expense
         </button>
-        <button type="submit" className={cn(buttonBase, buttonVariants.default, buttonSizes.default)}>
+        <button
+          type="submit"
+          className={cn(
+            buttonBase,
+            buttonVariants.default,
+            buttonSizes.default
+          )}
+        >
           Submit
         </button>
       </div>
     </form>
   );
 };
-
 
 // prevent enter key from submitting
 const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {

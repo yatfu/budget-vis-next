@@ -13,20 +13,26 @@ type BudgetProps = {
 
 
 export default function BudgetForm({ budgets, setBudgets, selectedMonth, selectedYear }: BudgetProps) {
-    const filteredBudgets = budgets
+    const filteredBudget = budgets
     .filter((budget: Budget) => budget.month === selectedMonth)
-    .filter((budget: Budget) => budget.year === selectedYear);
-    console.log(budgets);
+    .filter((budget: Budget) => budget.year === selectedYear)[0];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newBudget = { ...budgets, amount: Number(e.target.value) };
-        setBudgets(newBudget);
+        if (!filteredBudget) {
+            return;
+        }
+        for (const budget of budgets) { // match filtered budget with budget in array, edit budget in array
+            if (budget.id === filteredBudget.id) {
+                budget.amount = filteredBudget.amount;
+                return;
+            }
+        }
     }
     return (
         <div className="flex items-center gap-1">
         <input type="number"
             placeholder="Budget"
-            value={filteredBudgets[0]?.amount ?? 5000}
+            value={filteredBudget?.amount ?? 5000}
             onChange={handleChange}
             className={cn("w-28 text-right", inputStyles)}
         /></div>
