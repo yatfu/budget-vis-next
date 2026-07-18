@@ -75,6 +75,7 @@ const Expenses = () => {
   const filteredBudgets = budgets
     .filter((budget) => budget.month === selectedMonth)
     .filter((budget) => budget.year === selectedYear);
+    console.log()
 
   return (
     <div className="expenses flex flex-col gap-1">

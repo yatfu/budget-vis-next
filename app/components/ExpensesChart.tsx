@@ -30,32 +30,21 @@ function getBudgetColor(value: number, budget: number): string {
   }
 }
 
-const centerTextPlugin = {
-  id: "centerText",
-  afterDraw(chart: ChartJS) {
-    const { ctx } = chart;
-    const arc = chart.getDatasetMeta(0).data[0] as any;
-    if (!arc) return;
-    const { x, y } = arc;
+/**
+ *
+ * @param param0 {filteredBudgets[0]?.amount ?? 0}
+ * @returns
+ */
 
-    const style = getComputedStyle(document.documentElement);
-    const foreground = style.getPropertyValue("--foreground");
-    const muted = style.getPropertyValue("--muted-foreground");
-
-    ctx.save();
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    ctx.font = "12px sans-serif";
-    ctx.fillStyle = muted;
-    ctx.fillText("remaining", x, y + 12);
-
-    ctx.restore();
-  },
-};
-
-const ExpensesChart = ({ labels, values, budget }: { labels: string[], values: number[], budget: number }) => {
-
+const ExpensesChart = ({
+  labels,
+  values,
+  budget,
+}: {
+  labels: string[];
+  values: number[];
+  budget: number;
+}) => {
   const cumulativeSum: number[] = []; // each index is its own expense + sum of all elements behind it
   const colors: string[] = [];
 
@@ -69,6 +58,34 @@ const ExpensesChart = ({ labels, values, budget }: { labels: string[], values: n
   for (let i = 0; i < cumulativeSum.length; i++) {
     colors.push(getBudgetColor(cumulativeSum[i], budget)); // O(1)
   }
+
+  const centerTextPlugin = {
+    id: "centerText",
+    afterDraw(chart: ChartJS) {
+      const { ctx } = chart;
+      const arc = chart.getDatasetMeta(0).data[0] as any;
+      if (!arc) return;
+      const { x, y } = arc;
+
+      const style = getComputedStyle(document.documentElement);
+      const foreground = style.getPropertyValue("--foreground");
+      const muted = style.getPropertyValue("--muted-foreground");
+
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      // get remaining budget from chart data instead of budget data
+      const data = chart.data.datasets[0].data as number[];
+      const remainingBudget = data[data.length - 1]; // last slice = "Remaining Budget"
+
+      ctx.font = "16px sans-serif";
+      ctx.fillStyle = muted;
+      ctx.fillText("$" + remainingBudget + " remaining", x, y);
+
+      ctx.restore();
+    },
+  };
 
   // add remaining budget to data
   // Claude advised to create new arrays instead of using current props
@@ -91,12 +108,11 @@ const ExpensesChart = ({ labels, values, budget }: { labels: string[], values: n
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    backgroundColor: 'rgba(15, 23, 42, 0.9)',
-    borderColor: 'rgba(15, 23, 42, 0.9)',
+    backgroundColor: "rgba(15, 23, 42, 0.9)",
+    borderColor: "rgba(15, 23, 42, 0.9)",
     borderWidth: 5,
     cutout: "67%",
-    offset: chartValues.map((_, i) =>
-      i === chartValues.length - 1 ? 20 : 0), // pop out the last segment (Remaining Budget)
+    offset: chartValues.map((_, i) => (i === chartValues.length - 1 ? 20 : 0)), // pop out the last segment (Remaining Budget)
     plugins: {
       legend: {
         position: "right",
@@ -106,19 +122,23 @@ const ExpensesChart = ({ labels, values, budget }: { labels: string[], values: n
       tooltip: {
         // 5. Clean up tooltips with modern padding and styling
         padding: 12,
-        backgroundColor: 'rgba(15, 23, 42, 0.9)', // Deep slate background
-        titleFont: { size: 14, weight: 'bold' },
+        backgroundColor: "rgba(15, 23, 42, 0.9)", // Deep slate background
+        titleFont: { size: 14, weight: "bold" },
         bodyFont: { size: 13 },
         cornerRadius: 8,
-        displayColors: false
-      }
+        displayColors: false,
+      },
     },
   };
 
   return (
     <div className="h-100">
-      <Doughnut data={data} options={options} plugins={[centerTextPlugin]}
-        className="bg-card" />
+      <Doughnut
+        data={data}
+        options={options}
+        plugins={[centerTextPlugin]}
+        className="bg-card"
+      />
     </div>
   );
 };
