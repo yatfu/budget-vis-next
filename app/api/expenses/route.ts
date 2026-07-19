@@ -1,6 +1,6 @@
 import { pool } from "@/db/db";
 import { authenticate } from "@/lib/auth";
-import type { Expense, Query } from "@/lib/types";
+import type { Expense, Budget, Query } from "@/lib/types";
 
 /** */
 
@@ -21,6 +21,8 @@ import type { Expense, Query } from "@/lib/types";
 export async function POST(request: Request) {
   let oldExpenses: Expense[];
   let newExpenses: Expense[];
+  let oldBudgets: Budget[];
+  let newBudgets: Budget[];
   let userId: number;
   let selectedMonth: number;
   let selectedYear: number;
@@ -38,6 +40,7 @@ export async function POST(request: Request) {
     try {
       const body = await request.json();
       newExpenses = body.expenses;
+      newBudgets = body.budgets;
       selectedMonth = body.selectedMonth;
       selectedYear = body.selectedYear;
       //parse amount as float before validation
@@ -50,6 +53,14 @@ export async function POST(request: Request) {
         console.error("Invalid request body: expenses", newExpenses);
         return Response.json(
           { error: "Invalid request body: expenses" },
+          { status: 400 }
+        );
+      }
+      //validate budgets
+      if (!Array.isArray(newBudgets) || !newBudgets.every(isNewBudget)) {
+        console.error("Invalid request body: budgets", newBudgets);
+        return Response.json(
+          { error: "Invalid request body: budgets" },
           { status: 400 }
         );
       }
@@ -69,7 +80,7 @@ export async function POST(request: Request) {
     }
 
     // get old data
-    const result = await pool.query<Expense>(
+    const oldExpensesResult = await pool.query<Expense>(
       `SELECT id, user_id, label, amount, month, year 
       FROM expenses 
       WHERE user_id = $1 
@@ -77,55 +88,88 @@ export async function POST(request: Request) {
         AND year = $3`,
       [userId, selectedMonth, selectedYear]
     );
-    oldExpenses = result.rows;
+    oldExpenses = oldExpensesResult.rows;
+    const oldBudgetsResult = await pool.query<Budget>(
+      `SELECT id, user_id, amount, month, year
+      FROM budgets
+      WHERE user_id = $1
+      AND month = $2
+      AND year = $3`,
+      [userId, selectedMonth, selectedYear]
+    );
+    oldBudgets = oldBudgetsResult.rows;
   } catch (error) {
-    console.error("Getting old expenses from database failed", error);
+    console.error("Getting old data from database failed", error);
     return Response.json(
-      { error: "Getting old expenses from database failed" },
+      { error: "Getting old data from database failed" },
       { status: 500 }
     );
   }
 
   // convert to maps for comparison
   // searching with key in map is constant time vs linear array search
-  const oldMap = new Map(oldExpenses.map((e) => [e.id, e]));
-  const newMap = new Map(newExpenses.map((e) => [e.id, e]));
+  const oldExpensesMap = new Map(oldExpenses.map((e) => [e.id, e]));
+  const newExpensesMap = new Map(newExpenses.map((e) => [e.id, e]));
+
+  const oldBudgetsMap = new Map(oldBudgets.map((e) => [e.id, e]));
+  const newBudgetsMap = new Map(newBudgets.map((e) => [e.id, e]));
 
   // generate arrays of modified expenses through comparison
-  let inserts: Expense[] = [];
-  let updates: Expense[] = [];
-  let deletes: number[] = [];
+  let expensesInserts: Expense[] = [];
+  let expensesUpdates: Expense[] = [];
+  let expensesDeletes: number[] = [];
 
-  for (const [id, expense] of newMap) {
-    // inserts
-    if (!oldMap.has(id)) {
-      inserts.push(expense);
+  let budgetsInserts: Budget[] = [];
+  let budgetsUpdates: Budget[] = [];
+
+  for (const [id, expense] of newExpensesMap) {
+    // expense inserts
+    if (!oldExpensesMap.has(id)) {
+      expensesInserts.push(expense);
     }
   }
-  for (const [id, newExpense] of newMap) {
-    // updates
-    const oldExpense = oldMap.get(id);
+  for (const [id, newExpense] of newExpensesMap) {
+    // expense updates
+    const oldExpense = oldExpensesMap.get(id);
     if (
       oldExpense &&
       JSON.stringify(oldExpense) !== JSON.stringify(newExpense)
     ) {
       // cannot use !== because it compares references
-      updates.push(newExpense);
+      expensesUpdates.push(newExpense);
     }
   }
-  for (const [id] of oldMap) {
-    // deletes
-    if (!newMap.has(id)) {
-      deletes.push(id);
+  for (const [id] of oldExpensesMap) {
+    // expense deletes
+    if (!newExpensesMap.has(id)) {
+      expensesDeletes.push(id);
     }
   }
+  for (const [id, budget] of newBudgetsMap) {
+    // budget inserts
+    if (!oldBudgetsMap.has(id)) {
+      budgetsInserts.push(budget);
+    }
+  }
+  for (const [id, newBudget] of newBudgetsMap) {
+    // expense updates
+    const oldBudget = oldBudgetsMap.get(id);
+    if (oldBudget && JSON.stringify(oldBudget) !== JSON.stringify(newBudget)) {
+      // cannot use !== because it compares references
+      budgetsUpdates.push(newBudget);
+    }
+  }
+
   // generate SQL using modified expenses
   // simple loop to convert then push
-  let insertSQL: Query[] = [];
-  let updateSQL: Query[] = [];
-  let deleteSQL: Query[] = [];
+  let expensesInsertSQL: Query[] = [];
+  let expensesUpdateSQL: Query[] = [];
+  let expensesDeleteSQL: Query[] = [];
 
-  for (const insert of inserts) {
+  let budgetsInsertSQL: Query[] = [];
+  let budgetsUpdateSQL: Query[] = [];
+
+  for (const insert of expensesInserts) {
     const sql = `
       INSERT INTO expenses (user_id, label, amount, month, year)
       VALUES ($1, $2, $3, $4, $5)
@@ -134,9 +178,9 @@ export async function POST(request: Request) {
     // userId from params
     const { label, amount, month, year } = insert;
     const values = [userId, label, amount, month, year];
-    insertSQL.push({ sql, values });
+    expensesInsertSQL.push({ sql, values });
   }
-  for (const update of updates) {
+  for (const update of expensesUpdates) {
     const sql = `
       UPDATE expenses
       SET label = $1,
@@ -149,9 +193,9 @@ export async function POST(request: Request) {
       `;
     const { label, amount, month, year, id } = update;
     const values = [label, amount, month, year, id, userId];
-    updateSQL.push({ sql, values });
+    expensesUpdateSQL.push({ sql, values });
   }
-  for (const deleted of deletes) {
+  for (const deleted of expensesDeletes) {
     const sql = `
       DELETE FROM expenses
       WHERE id = $1
@@ -161,48 +205,79 @@ export async function POST(request: Request) {
     // id from deletes (array of id: numbers)
     // userId from params
     const values = [deleted, userId];
-    deleteSQL.push({ sql, values });
+    expensesDeleteSQL.push({ sql, values });
+  }
+  for (const insert of budgetsInserts) {
+    const sql = `
+    INSERT INTO budgets (user_id, amount, month, year)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;`;
+    const { amount, month, year } = insert;
+    const values = [userId, amount, month, year];
+    budgetsInsertSQL.push({ sql, values });
+  }
+  for (const update of budgetsUpdates) {
+    const sql = `
+    INSERT INTO budgets (user_id, amount, month, year)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;`;
+    const { amount, month, year } = update;
+    const values = [userId, amount, month, year];
+    budgetsUpdateSQL.push({ sql, values })
   }
   // send queries to database
 
-  let insertResults = [];
-  let updateResults = [];
-  let deleteResults = [];
+  let expensesInsertResults = [];
+  let expensesUpdateResults = [];
+  let expensesDeleteResults = [];
+
+  let budgetsInsertResults = [];
+  let budgetsUpdateResults = [];
 
   // pools connections
 
   const client = await pool.connect(); // ChatGPT says theres a potential issue with using multiple clients. this prevents that
   try {
     await client.query("BEGIN");
-    for (const query of insertSQL) {
-      const insertResult = await client.query(query.sql, query.values);
-      insertResults.push(insertResult);
+    for (const query of expensesInsertSQL) {
+      const result = await client.query(query.sql, query.values);
+      expensesInsertResults.push(result);
     }
-    for (const query of updateSQL) {
-      const updateResult = await client.query(query.sql, query.values);
-      updateResults.push(updateResult);
+    for (const query of expensesUpdateSQL) {
+      const result = await client.query(query.sql, query.values);
+      expensesUpdateResults.push(result);
     }
-    for (const query of deleteSQL) {
-      const deleteResult = await client.query(query.sql, query.values);
-      deleteResults.push(deleteResult);
+    for (const query of expensesDeleteSQL) {
+      const result = await client.query(query.sql, query.values);
+      expensesDeleteResults.push(result);
+    }
+    for (const query of budgetsInsertSQL) {
+      const result = await client.query(query.sql, query.values);
+      budgetsInsertResults.push(result);
+    }
+    for (const query of budgetsUpdateSQL) {
+      const result = await client.query(query.sql, query.values);
+      budgetsUpdateResults.push(result);
     }
 
     await client.query("COMMIT");
   } catch (error) {
     await client.query("ROLLBACK");
-    console.error("Failed saving expenses", error);
-    return Response.json({ error: "Failed saving expenses" }, { status: 500 });
+    console.error("Failed saving changes", error);
+    return Response.json({ error: "Failed saving changes" }, { status: 500 });
   } finally {
     // release client from imprisonment :)
     client.release();
   }
 
-  console.log('Expenses saved')
+  console.log("Changes saved");
 
   return Response.json({
-    inserted: insertResults,
-    updated: updateResults,
-    deleted: deleteResults,
+    expensesInserted: expensesInsertResults,
+    expensesUpdated: expensesUpdateResults,
+    expensesDeleted: expensesDeleteResults,
+    budgetsInserted: budgetsInsertResults,
+    budgetsUpdated: budgetsUpdateResults
   });
 }
 
@@ -222,7 +297,8 @@ export async function GET(req: Request) {
     "SELECT * FROM expenses WHERE user_id = $1",
     [checkedUserId]
   ); // used parsed user id instead of original because ChatGPT recommended to. SQL will auto-parse strings, and with the integer check it should be fine with original but reduces reliability by depending on SQL auto parse
-  const expenses = expenseResult.rows.map((row) => ({ // convert amount (SQL decimal -> string -> number)
+  const expenses = expenseResult.rows.map((row) => ({
+    // convert amount (SQL decimal -> string -> number)
     ...row,
     amount: Number(row.amount),
   }));
@@ -231,11 +307,12 @@ export async function GET(req: Request) {
     "SELECT * FROM budgets WHERE user_id = $1",
     [checkedUserId]
   ); // convert amount (SQL decimal -> string -> number)
-  const budgets = budgetResult.rows.map((row) => ({ // convert amount (SQL decimal -> string -> number)
+  const budgets = budgetResult.rows.map((row) => ({
+    // convert amount (SQL decimal -> string -> number)
     ...row,
     amount: Number(row.amount),
   }));
-  console.log(expenses, budgets)
+  console.log(expenses, budgets);
   return Response.json({ expenses, budgets }); // converts result into json, then sends it as http response
 }
 
@@ -298,3 +375,13 @@ function isNewExpense(expense: any): boolean {
   );
 }
 
+function isNewBudget(budget: any): boolean {
+  // helper function to check request body for correct type. used in POST function
+  return (
+    budget &&
+    (typeof budget.id === "string" || typeof budget.id === "number") &&
+    typeof budget.amount === "number" &&
+    typeof budget.month === "number" &&
+    typeof budget.year === "number"
+  );
+}
