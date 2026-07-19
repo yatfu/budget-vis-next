@@ -92,9 +92,7 @@ export async function POST(request: Request) {
     const oldBudgetsResult = await pool.query<Budget>(
       `SELECT id, user_id, amount, month, year
       FROM budgets
-      WHERE user_id = $1
-      AND month = $2
-      AND year = $3`,
+      WHERE user_id = $1`,
       [userId, selectedMonth, selectedYear]
     );
     oldBudgets = oldBudgetsResult.rows;
@@ -111,8 +109,8 @@ export async function POST(request: Request) {
   const oldExpensesMap = new Map(oldExpenses.map((e) => [e.id, e]));
   const newExpensesMap = new Map(newExpenses.map((e) => [e.id, e]));
 
-  const oldBudgetsMap = new Map(oldBudgets.map((e) => [e.id, e]));
-  const newBudgetsMap = new Map(newBudgets.map((e) => [e.id, e]));
+  const oldBudgetsMap = new Map(oldBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e])); // key is year-month, not id, since i want only one budget per month
+  const newBudgetsMap = new Map(newBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e]));
 
   // generate arrays of modified expenses through comparison
   let expensesInserts: Expense[] = [];
@@ -145,15 +143,15 @@ export async function POST(request: Request) {
       expensesDeletes.push(id);
     }
   }
-  for (const [id, budget] of newBudgetsMap) {
+  for (const [key, budget] of newBudgetsMap) { // uses generated year-month key instead of budget.id, unlike expenses
     // budget inserts
-    if (!oldBudgetsMap.has(id)) {
+    if (!oldBudgetsMap.has(key)) {
       budgetsInserts.push(budget);
     }
   }
-  for (const [id, newBudget] of newBudgetsMap) {
-    // expense updates
-    const oldBudget = oldBudgetsMap.get(id);
+  for (const [key, newBudget] of newBudgetsMap) {
+    // budget updates
+    const oldBudget = oldBudgetsMap.get(key);
     if (oldBudget && JSON.stringify(oldBudget) !== JSON.stringify(newBudget)) {
       // cannot use !== because it compares references
       budgetsUpdates.push(newBudget);
@@ -218,8 +216,11 @@ export async function POST(request: Request) {
   }
   for (const update of budgetsUpdates) {
     const sql = `
-    INSERT INTO budgets (user_id, amount, month, year)
-    VALUES ($1, $2, $3, $4)
+    UPDATE budgets
+    SET amount = $2
+    WHERE user_id = $1
+    AND month = $3
+    AND year = $4
     RETURNING *;`;
     const { amount, month, year } = update;
     const values = [userId, amount, month, year];
