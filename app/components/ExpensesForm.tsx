@@ -72,7 +72,7 @@ const ExpensesForm = ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ expenses, selectedMonth, selectedYear }),
+        body: JSON.stringify({ expenses, budgets, selectedMonth, selectedYear }),
       });
       console.log("Response from server:", response);
       if (!response.ok) {

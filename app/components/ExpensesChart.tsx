@@ -77,11 +77,14 @@ const ExpensesChart = ({
 
       // get remaining budget from chart data instead of budget data
       const data = chart.data.datasets[0].data as number[];
+      const spentBudget = data.reduce((x, y) => x + y, 0);
       const remainingBudget = data[data.length - 1]; // last slice = "Remaining Budget"
 
       ctx.font = "16px sans-serif";
       ctx.fillStyle = muted;
-      ctx.fillText("$" + remainingBudget + " remaining", x, y);
+
+      ctx.fillText(`$${spentBudget} spent`, x, y - 10);
+      ctx.fillText(`$${remainingBudget} remaining`, x, y + 10);
 
       ctx.restore();
     },
