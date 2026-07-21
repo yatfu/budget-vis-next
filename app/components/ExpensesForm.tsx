@@ -111,7 +111,7 @@ const ExpensesForm = ({
     >
       <div className="flex justify-between gap-1">
         <div className="flex items-center gap-1">
-          <p className="text-sm font-medium">Budget</p>
+          <p className="text-sm font-medium">Income/Budget</p>
 
           <div className="flex items-center gap-1">
             <input
