@@ -1,6 +1,9 @@
+"use client";
+
 import { logout } from "../actions/logout";
 import Link from "next/link";
 import { cn, buttonBase, buttonVariants, buttonSizes, borderless } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 type Props = {
   userId?: String;
@@ -9,6 +12,10 @@ type Props = {
 const navLinkStyles = cn(buttonBase, buttonVariants.ghost, buttonSizes.default, borderless);
 
 const Nav = ({userId}: Props) => {
+  const pathname = usePathname();
+  if (pathname === "/") {
+    return null;
+  }
   return (
     <div className="nav py-3 flex justify-center gap-1">
       {userId && (
