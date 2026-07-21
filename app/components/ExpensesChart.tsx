@@ -130,6 +130,10 @@ const ExpensesChart = ({
         bodyFont: { size: 13 },
         cornerRadius: 8,
         displayColors: false,
+        callbacks: {
+          label: (context: { label?: string; parsed: number }) =>
+            `${context.label ?? ""}: $${context.parsed}`,
+        },
       },
     },
   };
