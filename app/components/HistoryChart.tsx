@@ -9,27 +9,48 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { Budget, Expense } from '@/lib/types'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const HistoryChart = () => {
-  const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+type HistoryChartProps = {
+  budget: Budget[];
+  spending: Expense[];
+};
+
+const HistoryChart = ({ budget, expenses }: HistoryChartProps) => {
+  const labels = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   // placeholder data — replace with real budget/spending totals per month
-  const budget: number[] = [];
-  const spending: number[] = [];
-  const difference: number[] = budget.map((b, i) => b - spending[i]);
+  const difference: number[] = budget.map((b, i) => b.amount - expenses[i].amount);
   const maxAbsDifference = Math.max(1, ...difference.map((d) => Math.abs(d)));
 
-  const budgetVsSpendingData = {
+  const budgetVsExpensesData = {
     labels,
     datasets: [
       { label: "Budget", data: budget, backgroundColor: "oklch(70% 0.02 250)" },
-      { label: "Spending", data: spending, backgroundColor: "oklch(65% 0.16 250)" },
+      {
+        label: "Expenses",
+        data: expenses,
+        backgroundColor: "oklch(65% 0.16 250)",
+      },
     ],
   };
 
-  const budgetVsSpendingOptions = {
+  const budgetVsExpensesOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: { x: { stacked: false }, y: { stacked: false } },
@@ -39,7 +60,7 @@ const HistoryChart = () => {
     labels,
     datasets: [
       {
-        label: "Budget - Spending",
+        label: "Budget - Expenses",
         data: difference,
         backgroundColor: difference.map((d) =>
           d >= 0 ? "oklch(69.6% 0.25 162.5)" : "oklch(0.55 0.22 25)"
@@ -67,7 +88,7 @@ const HistoryChart = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="h-100">
-        <Bar data={budgetVsSpendingData} options={budgetVsSpendingOptions} />
+        <Bar data={budgetVsExpensesData} options={budgetVsExpensesOptions} />
       </div>
       <div className="h-100">
         <Bar data={differenceData} options={differenceOptions} />

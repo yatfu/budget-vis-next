@@ -1,6 +1,5 @@
 import { Expense, ExpenseUseState, Budget } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
-import BudgetForm from "./BudgetForm";
 import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
 
 import { inputStyles } from "@/lib/utils";
