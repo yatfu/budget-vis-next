@@ -44,10 +44,7 @@ export async function POST(request: Request) {
       selectedMonth = body.selectedMonth;
       selectedYear = body.selectedYear;
       //parse amount as float before validation
-      //because amount is decimal value, it gets read as string in request.json()
-      newExpenses.forEach((expense) => {
-        expense.amount = parseFloat(expense.amount);
-      });
+
       //validate expenses
       if (!Array.isArray(newExpenses) || !newExpenses.every(isNewExpense)) {
         console.error("Invalid request body: expenses", newExpenses);
@@ -56,6 +53,12 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
+
+      //because amount is decimal value, it gets read as string in request.json()
+      newExpenses.forEach((expense) => {
+        expense.amount = parseFloat(expense.amount);
+      });
+
       //validate budgets
       if (!Array.isArray(newBudgets) || !newBudgets.every(isNewBudget)) {
         console.error("Invalid request body: budgets", newBudgets);
@@ -73,6 +76,10 @@ export async function POST(request: Request) {
         selectedMonth > 12
       ) {
         console.error("Invalid request body: selectedMonth or selectedYear");
+        return Response.json(
+          { error: "Invalid month or year" },
+          { status: 400 }
+        );
       }
     } catch (error) {
       console.log("Invalid request body", error);
@@ -109,8 +116,12 @@ export async function POST(request: Request) {
   const oldExpensesMap = new Map(oldExpenses.map((e) => [e.id, e]));
   const newExpensesMap = new Map(newExpenses.map((e) => [e.id, e]));
 
-  const oldBudgetsMap = new Map(oldBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e])); // key is year-month, not id, since i want only one budget per month
-  const newBudgetsMap = new Map(newBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e]));
+  const oldBudgetsMap = new Map(
+    oldBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e])
+  ); // key is year-month, not id, since i want only one budget per month
+  const newBudgetsMap = new Map(
+    newBudgets.map((e) => [`${e.year}-${String(e.month).padStart(2, "0")}`, e])
+  );
 
   // generate arrays of modified expenses through comparison
   let expensesInserts: Expense[] = [];
@@ -143,7 +154,8 @@ export async function POST(request: Request) {
       expensesDeletes.push(id);
     }
   }
-  for (const [key, budget] of newBudgetsMap) { // uses generated year-month key instead of budget.id, unlike expenses
+  for (const [key, budget] of newBudgetsMap) {
+    // uses generated year-month key instead of budget.id, unlike expenses
     // budget inserts
     if (!oldBudgetsMap.has(key)) {
       budgetsInserts.push(budget);
@@ -224,7 +236,7 @@ export async function POST(request: Request) {
     RETURNING *;`;
     const { amount, month, year } = update;
     const values = [userId, amount, month, year];
-    budgetsUpdateSQL.push({ sql, values })
+    budgetsUpdateSQL.push({ sql, values });
   }
   // send queries to database
 
@@ -278,7 +290,7 @@ export async function POST(request: Request) {
     expensesUpdated: expensesUpdateResults,
     expensesDeleted: expensesDeleteResults,
     budgetsInserted: budgetsInsertResults,
-    budgetsUpdated: budgetsUpdateResults
+    budgetsUpdated: budgetsUpdateResults,
   });
 }
 
