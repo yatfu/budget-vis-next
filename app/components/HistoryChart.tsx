@@ -12,17 +12,16 @@ import {
   TooltipItem,
 } from "chart.js";
 import { Budget, Expense } from "@/lib/types";
-import { cn, cardStyles } from "@/lib/utils";
+import { cn, cardStyles, inputStyles } from "@/lib/utils";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 type HistoryChartProps = {
-  budgets: number[];
-  expenses: number[];
-  differences: number[];
+  budgets: Budget[];
+  expenses: {year: number, total: number, month: number}[];
 };
 
-const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => {
+const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
   const labels = [
     "January",
     "Feburary",
@@ -39,6 +38,41 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
   ];
   const now = new Date();
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
+  const filteredExpenses = expenses.filter((e) => e.year === selectedYear);
+  const filteredBudgets = budgets.filter((b) => b.year === selectedYear);
+
+  const expensesByMonth = new Map(filteredExpenses.map((e) => [e.month, e.total]));
+  const budgetsByMonth = new Map(filteredBudgets.map((b) => [b.month, b.amount]));
+
+  const monthNumbers = Array.from({ length: 12 }, (_, i) => i + 1); // [1..12], we need the entire array from 1-12 to fill out the chart, instead of only including months that have expenses and budgets
+  const expensesByMonthArray: number[] = [];
+  const budgetsByMonthArray: number[] = [];
+
+  for (let i = 1; i < 13; i++) {
+    let amount: number | undefined = expensesByMonth.get(i);
+    if (amount) { // null = 0 in this case, but it's okay because the data is only used for display
+      expensesByMonthArray.push(amount)
+    }
+    else {
+      expensesByMonthArray.push(0);
+    }
+  } 
+
+  for (let i = 1; i < 13; i++) {
+    let amount: number | undefined = budgetsByMonth.get(i);
+    if (amount) { // null = 0 in this case, but it's okay because the data is only used for display
+      budgetsByMonthArray.push(amount)
+    }
+    else {
+      budgetsByMonthArray.push(0);
+    }
+  } 
+
+  const differences: number[] = budgetsByMonthArray.map(
+    (b, i) => b - expensesByMonthArray[i]
+  );
+
+
   const absoluteDifferences = Math.max(1, ...differences.map((d) => Math.abs(d)));
   //console.log(expenses)
 
@@ -48,13 +82,13 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
     datasets: [
       {
         label: "Budget",
-        data: budgets,
+        data: budgetsByMonthArray,
         backgroundColor: "oklch(0.65 0.16 250)",
         maxBarThickness: 32,
       },
       {
         label: "Expenses",
-        data: expenses,
+        data: expensesByMonthArray,
         backgroundColor: "oklch(0.65 0.16 55)",
         maxBarThickness: 32,
       },
@@ -147,6 +181,12 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
 
   return (
     <div className="flex flex-col gap-1">
+      <input
+        className={cn("w-20", inputStyles)}
+        type="number"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(Number(e.target.value))}
+      />
       <div className={cn(cardStyles, "h-100", "p-4", "flex flex-col gap-2")}>
         <p className="text-sm font-medium text-center">Budget vs Expenses</p>
         <div className="relative flex-1">
