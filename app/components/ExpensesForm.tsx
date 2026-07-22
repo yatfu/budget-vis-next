@@ -116,7 +116,7 @@ const ExpensesForm = ({
             <input
               type="number"
               placeholder="Budget"
-              value={filteredBudget?.amount ?? 5000}
+              value={filteredBudget?.amount ?? 0}
               onChange={(e) => handleBudgetChange(Number(e.target.value))}
               className={cn("w-28 h-9 text-right", inputStyles)}
             />

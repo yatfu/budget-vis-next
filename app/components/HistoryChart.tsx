@@ -9,6 +9,7 @@ import {
   BarElement,
   Tooltip,
   Legend,
+  TooltipItem,
 } from "chart.js";
 import { Budget, Expense } from "@/lib/types";
 
@@ -22,18 +23,18 @@ type HistoryChartProps = {
 
 const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => {
   const labels = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "Feburary",
+    "March",
+    "Aprli",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const now = new Date();
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
@@ -44,11 +45,11 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
   const budgetVsExpensesData = {
     labels,
     datasets: [
-      { label: "Budget", data: budgets, backgroundColor: "oklch(70% 0.02 250)" },
+      { label: "Budget", data: budgets, backgroundColor: "oklch(0.65 0.16 250)" },
       {
         label: "Expenses",
         data: expenses,
-        backgroundColor: "oklch(65% 0.16 250)",
+        backgroundColor: "oklch(0.65 0.16 55)",
       },
     ],
   };
@@ -57,6 +58,14 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
     responsive: true,
     maintainAspectRatio: false,
     scales: { x: { stacked: false }, y: { stacked: false } },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (context: TooltipItem<"bar">) =>
+            `${context.dataset.label ?? ""}: $${context.parsed.y ?? 0}`,
+        },
+      },
+    },
   };
 
   const differenceData = {
@@ -79,13 +88,22 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
       y: {
         min: -absoluteDifferences,
         max: absoluteDifferences,
+        ticks: { maxTicksLimit: 5 },
         grid: {
           color: (ctx: { tick: { value: number } }) =>
             ctx.tick.value === 0 ? "#898781" : "#e1e0d9",
         },
       },
     },
-    plugins: { legend: { display: false } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (context: TooltipItem<"bar">) =>
+            `${context.dataset.label ?? ""}: $${context.parsed.y ?? 0}`,
+        },
+      },
+    },
   };
 
   return (
@@ -93,7 +111,7 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
       <div className="h-100">
         <Bar data={budgetVsExpensesData} options={budgetVsExpensesOptions} />
       </div>
-      <div className="h-100">
+      <div className="h-64">
         <Bar data={differenceData} options={differenceOptions} />
       </div>
     </div>
