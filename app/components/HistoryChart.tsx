@@ -12,6 +12,7 @@ import {
   TooltipItem,
 } from "chart.js";
 import { Budget, Expense } from "@/lib/types";
+import { cn, cardStyles } from "@/lib/utils";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -45,11 +46,17 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
   const budgetVsExpensesData = {
     labels,
     datasets: [
-      { label: "Budget", data: budgets, backgroundColor: "oklch(0.65 0.16 250)" },
+      {
+        label: "Budget",
+        data: budgets,
+        backgroundColor: "oklch(0.65 0.16 250)",
+        maxBarThickness: 32,
+      },
       {
         label: "Expenses",
         data: expenses,
         backgroundColor: "oklch(0.65 0.16 55)",
+        maxBarThickness: 32,
       },
     ],
   };
@@ -57,9 +64,28 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
   const budgetVsExpensesOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    scales: { x: { stacked: false }, y: { stacked: false } },
+    scales: {
+      x: {
+        stacked: false,
+        grid: { display: false },
+        border: { display: false },
+        ticks: { color: "#898781" },
+      },
+      y: {
+        stacked: false,
+        border: { display: false },
+        grid: { color: "#e1e0d9" },
+        ticks: { color: "#898781" },
+      },
+    },
     plugins: {
       tooltip: {
+        padding: 12,
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
+        titleFont: { size: 14, weight: "bold" as const },
+        bodyFont: { size: 13 },
+        cornerRadius: 8,
+        displayColors: false,
         callbacks: {
           label: (context: TooltipItem<"bar">) =>
             `${context.dataset.label ?? ""}: $${context.parsed.y ?? 0}`,
@@ -77,6 +103,7 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
         backgroundColor: differences.map((d) =>
           d >= 0 ? "oklch(69.6% 0.25 162.5)" : "oklch(0.55 0.22 25)"
         ),
+        maxBarThickness: 32,
       },
     ],
   };
@@ -85,10 +112,16 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
     responsive: true,
     maintainAspectRatio: false,
     scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { color: "#898781" },
+      },
       y: {
         min: -absoluteDifferences,
         max: absoluteDifferences,
-        ticks: { maxTicksLimit: 5 },
+        ticks: { maxTicksLimit: 5, color: "#898781" },
+        border: { display: false },
         grid: {
           color: (ctx: { tick: { value: number } }) =>
             ctx.tick.value === 0 ? "#898781" : "#e1e0d9",
@@ -98,6 +131,12 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
     plugins: {
       legend: { display: false },
       tooltip: {
+        padding: 12,
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
+        titleFont: { size: 14, weight: "bold" as const },
+        bodyFont: { size: 13 },
+        cornerRadius: 8,
+        displayColors: false,
         callbacks: {
           label: (context: TooltipItem<"bar">) =>
             `${context.dataset.label ?? ""}: $${context.parsed.y ?? 0}`,
@@ -107,12 +146,18 @@ const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => 
   };
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="h-100">
-        <Bar data={budgetVsExpensesData} options={budgetVsExpensesOptions} />
+    <div className="flex flex-col gap-1">
+      <div className={cn(cardStyles, "h-100", "p-4", "flex flex-col gap-2")}>
+        <p className="text-sm font-medium text-center">Budget vs Expenses</p>
+        <div className="relative flex-1">
+          <Bar data={budgetVsExpensesData} options={budgetVsExpensesOptions} />
+        </div>
       </div>
-      <div className="h-64">
-        <Bar data={differenceData} options={differenceOptions} />
+      <div className={cn(cardStyles, "h-64", "p-4", "flex flex-col gap-2")}>
+        <p className="text-sm font-medium text-center">Savings</p>
+        <div className="relative flex-1">
+          <Bar data={differenceData} options={differenceOptions} />
+        </div>
       </div>
     </div>
   );
