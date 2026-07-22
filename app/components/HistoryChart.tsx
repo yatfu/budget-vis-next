@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -9,16 +10,17 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Budget, Expense } from '@/lib/types'
+import { Budget, Expense } from "@/lib/types";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 type HistoryChartProps = {
-  budget: Budget[];
-  spending: Expense[];
+  budgets: number[];
+  expenses: number[];
+  differences: number[];
 };
 
-const HistoryChart = ({ budget, expenses }: HistoryChartProps) => {
+const HistoryChart = ({ budgets, expenses, differences }: HistoryChartProps) => {
   const labels = [
     "Jan",
     "Feb",
@@ -33,15 +35,16 @@ const HistoryChart = ({ budget, expenses }: HistoryChartProps) => {
     "Nov",
     "Dec",
   ];
+  const now = new Date();
+  const [selectedYear, setSelectedYear] = useState(now.getFullYear());
+  const absoluteDifferences = Math.max(1, ...differences.map((d) => Math.abs(d)));
+  //console.log(expenses)
 
-  // placeholder data — replace with real budget/spending totals per month
-  const difference: number[] = budget.map((b, i) => b.amount - expenses[i].amount);
-  const maxAbsDifference = Math.max(1, ...difference.map((d) => Math.abs(d)));
 
   const budgetVsExpensesData = {
     labels,
     datasets: [
-      { label: "Budget", data: budget, backgroundColor: "oklch(70% 0.02 250)" },
+      { label: "Budget", data: budgets, backgroundColor: "oklch(70% 0.02 250)" },
       {
         label: "Expenses",
         data: expenses,
@@ -61,8 +64,8 @@ const HistoryChart = ({ budget, expenses }: HistoryChartProps) => {
     datasets: [
       {
         label: "Budget - Expenses",
-        data: difference,
-        backgroundColor: difference.map((d) =>
+        data: differences,
+        backgroundColor: differences.map((d) =>
           d >= 0 ? "oklch(69.6% 0.25 162.5)" : "oklch(0.55 0.22 25)"
         ),
       },
@@ -74,8 +77,8 @@ const HistoryChart = ({ budget, expenses }: HistoryChartProps) => {
     maintainAspectRatio: false,
     scales: {
       y: {
-        min: -maxAbsDifference,
-        max: maxAbsDifference,
+        min: -absoluteDifferences,
+        max: absoluteDifferences,
         grid: {
           color: (ctx: { tick: { value: number } }) =>
             ctx.tick.value === 0 ? "#898781" : "#e1e0d9",
