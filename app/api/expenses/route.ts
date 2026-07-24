@@ -100,7 +100,7 @@ export async function POST(request: Request) {
       `SELECT id, user_id, amount, month, year
       FROM budgets
       WHERE user_id = $1`,
-      [userId, selectedMonth, selectedYear]
+      [userId]
     );
     oldBudgets = oldBudgetsResult.rows;
   } catch (error) {
