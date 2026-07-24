@@ -99,9 +99,7 @@ export async function POST(request: Request) {
     const oldBudgetsResult = await pool.query<Budget>(
       `SELECT id, user_id, amount, month, year
       FROM budgets
-      WHERE user_id = $1
-      AND month = $2
-      AND year = $3`,
+      WHERE user_id = $1`,
       [userId, selectedMonth, selectedYear]
     );
     oldBudgets = oldBudgetsResult.rows;

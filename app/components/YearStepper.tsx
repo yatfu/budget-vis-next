@@ -1,4 +1,4 @@
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown } from "lucide-react"; // up down arrows
 import { cn, buttonBase, buttonVariants, yearInputStyles } from "@/lib/utils";
 
 type YearStepperProps = {
