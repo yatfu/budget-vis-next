@@ -14,6 +14,9 @@ export const inputStyles =
 // shared container styling per docs/design.md (rows, cards, form panels)
 export const cardStyles = "rounded-lg border border-border bg-card px-1 py-1";
 
+// compact year input (YearStepper) — sized to ~4 digits instead of a full-width number input, fixed height to align with the stacked up/down arrows beside it
+export const yearInputStyles = cn(inputStyles, "w-16 h-9 text-center");
+
 // removes the visible border from cardStyles/inputStyles/buttonBase while keeping their layout (border width/radius) intact — compose after the base, e.g. cn(buttonBase, buttonVariants.ghost, borderless)
 export const borderless = "border-transparent";
 
