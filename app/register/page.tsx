@@ -1,34 +1,13 @@
-"use client";
-import { useActionState } from "react";
-import { register } from "../actions/register";
-import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
+import RegisterForm from "../components/RegisterForm";
+import { redirect } from "next/navigation";
+import { authenticate } from "@/lib/auth";
 
-export default function Register() {
-  const [state, formAction] = useActionState(register, {
-    success: false,
-    userId: null,
-    error: null,
-  });
-
+export default async function Register() {
+  const userId = await authenticate();
+  if (userId) {
+    redirect('/dashboard');
+  }
   return (
-    <div className="flex justify-center py-3">
-      <form
-        className={cn("register-form flex flex-col gap-1", cardStyles)}
-        action={formAction}
-      >
-        <div className="flex flex-col gap-1">
-          <label className="text-sm text-muted-foreground">Username</label>
-          <input type="text" name="username" required className={inputStyles} />
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label className="text-sm text-muted-foreground">Password</label>
-          <input type="password" name="password" required className={inputStyles} />
-        </div>
-
-        <button type="submit" className={cn(buttonBase, buttonVariants.default, buttonSizes.default)}>Register</button>
-        {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
-      </form>
-    </div>
+    <RegisterForm />
   );
 }
