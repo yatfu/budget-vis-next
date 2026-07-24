@@ -12,7 +12,8 @@ import {
   TooltipItem,
 } from "chart.js";
 import { Budget, Expense } from "@/lib/types";
-import { cn, cardStyles, inputStyles } from "@/lib/utils";
+import { cn, cardStyles } from "@/lib/utils";
+import YearStepper from "./YearStepper";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -181,12 +182,7 @@ const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
 
   return (
     <div className="flex flex-col gap-1">
-      <input
-        className={cn("w-20", inputStyles)}
-        type="number"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(Number(e.target.value))}
-      />
+      <YearStepper year={selectedYear} setYear={setSelectedYear} />
       <div className={cn(cardStyles, "h-100", "p-4", "flex flex-col gap-2")}>
         <p className="text-sm font-medium text-center">Budget vs Expenses</p>
         <div className="relative flex-1">

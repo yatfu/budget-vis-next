@@ -1,4 +1,5 @@
 import { months, inputStyles, cn } from '@/lib/utils'
+import YearStepper from './YearStepper'
 
 type DateSelectorProps = {
   selectedMonth: number;
@@ -18,7 +19,7 @@ const DateSelector = ({
       <select
         value={selectedMonth}
         onChange={(e) => setSelectedMonth(Number(e.target.value))}
-        className={inputStyles}
+        className={cn(inputStyles, "h-9")}
       >
         <option value={1}>January</option>
         <option value={2}>February</option>
@@ -34,12 +35,7 @@ const DateSelector = ({
         <option value={12}>December</option>
         {/* ... */}
       </select>
-      <input
-        className={cn("w-20", inputStyles)}
-        type="number"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(Number(e.target.value))}
-      />
+      <YearStepper year={selectedYear} setYear={setSelectedYear} />
     </div>
   );
 };
