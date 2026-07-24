@@ -77,8 +77,9 @@ const ExpensesChart = ({
 
       // get remaining budget from chart data instead of budget data
       const data = chart.data.datasets[0].data as number[];
-      const spentBudget = data.reduce((x, y) => x + y, 0);
+
       const remainingBudget = data[data.length - 1]; // last slice = "Remaining Budget"
+      const spentBudget = data.slice(0, -1).reduce((x, y) => x + y, 0); // exclude the remaining-budget slice
 
       ctx.font = "16px sans-serif";
       ctx.fillStyle = muted;
