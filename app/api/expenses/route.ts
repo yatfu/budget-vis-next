@@ -336,8 +336,7 @@ export async function GET(req: Request) {
  *
  */
 export async function DELETE(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const userId = searchParams.get("user_id");
+  const userId = await authenticate();
   let checkedUserId: number;
 
   try {

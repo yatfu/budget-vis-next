@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export async function register(
   prevState: RegisterState | null,
   formData: FormData
-) {
+): Promise<RegisterState> {
   console.log("Executing Register function");
   const username: string = formData.get("username") as string;
   const password: string = formData.get("password") as string;

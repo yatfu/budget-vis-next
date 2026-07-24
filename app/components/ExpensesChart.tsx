@@ -119,15 +119,15 @@ const ExpensesChart = ({
     offset: chartValues.map((_, i) => (i === chartValues.length - 1 ? 20 : 0)), // pop out the last segment (Remaining Budget)
     plugins: {
       legend: {
-        position: "right",
+        position: "right" as const,
         usePointStyle: true,
-        pointStyle: "circle",
+        pointStyle: "circle" as const,
       },
       tooltip: {
         // 5. Clean up tooltips with modern padding and styling
         padding: 12,
         backgroundColor: "rgba(15, 23, 42, 0.9)", // Deep slate background
-        titleFont: { size: 14, weight: "bold" },
+        titleFont: { size: 14, weight: "bold" as const },
         bodyFont: { size: 13 },
         cornerRadius: 8,
         displayColors: false,
