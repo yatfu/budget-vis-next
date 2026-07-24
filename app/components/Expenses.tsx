@@ -15,7 +15,7 @@ import {
   cardStyles,
 } from "@/lib/utils";
 
-type SortBy = "none" | "amount" | "label";
+export type SortBy = "none" | "amount" | "label";
 
 const Expenses = () => {
   const router = useRouter();

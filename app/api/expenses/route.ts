@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
       //because amount is decimal value, it gets read as string in request.json()
       newExpenses.forEach((expense) => {
-        expense.amount = parseFloat(expense.amount);
+        expense.amount = parseFloat(String(expense.amount));
       });
 
       //validate budgets
@@ -151,7 +151,7 @@ export async function POST(request: Request) {
   for (const [id] of oldExpensesMap) {
     // expense deletes
     if (!newExpensesMap.has(id)) {
-      expensesDeletes.push(id);
+      expensesDeletes.push(Number(id));
     }
   }
   for (const [key, budget] of newBudgetsMap) {

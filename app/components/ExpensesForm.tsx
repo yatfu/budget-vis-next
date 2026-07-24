@@ -1,6 +1,7 @@
 import { Expense, ExpenseUseState, Budget } from "@/lib/types";
 import ExpenseRow from "./ExpenseRow";
 import { cn, buttonBase, buttonVariants, buttonSizes } from "@/lib/utils";
+import type { SortBy } from "./Expenses";
 
 import { inputStyles } from "@/lib/utils";
 
@@ -17,8 +18,11 @@ const ExpensesForm = ({
 }: ExpenseUseState & {
   budgets: Budget[];
   setBudgets: React.Dispatch<Budget[]>;
+  sortBy: SortBy;
+  setSortBy: React.Dispatch<React.SetStateAction<SortBy>>;
   selectedMonth: number;
   selectedYear: number;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   // { PROPS }
 
