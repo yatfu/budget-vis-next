@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Budget Vis
 
-## Getting Started
+A small tool for tracking what you spend against what you've budgeted, month by month. Enter your expenses and a budget number; it turns that into a chart showing exactly where you stand — no categories to configure, no bank account to link, nothing syncing in the background.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dashboard** — pick a month/year, add expenses (label + amount), set a budget for that month. A doughnut chart shows spent vs. remaining budget, shifting from blue → orange → red as you approach or cross your budget.
+- **History** — a year-at-a-time view: a grouped bar chart of budget vs. expenses per month, and a diverging bar chart of savings (budget − expenses) centered on zero.
+- **Accounts** — username/password registration and login, session-based auth via a `sessions` table (cookie holds an opaque session ID, not the user ID itself).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org) (App Router) + React + TypeScript
+- Tailwind CSS v4, plain HTML elements styled via shared constants in `lib/utils.ts` (see `docs/design.md`)
+- [Chart.js](https://www.chartjs.org/) via `react-chartjs-2` for the doughnut and bar charts
+- [PostgreSQL](https://www.postgresql.org/) via `pg` (raw SQL, no ORM)
+- [lucide-react](https://lucide.dev/) for icons
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Getting started
 
-## Learn More
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Set up a PostgreSQL database and point `DATABASE_URL` at it in a `.env` file:
+   ```
+   DATABASE_URL=postgres://user:password@host:port/dbname
+   ```
+3. Run the SQL files in `db/sql-migrations/` against that database, in order (`01_users.sql`, `02_expenses.sql`, `03_sessions.sql`, `04_budgets.sql`) — there's no migration runner yet, so apply them manually (e.g. via `psql`).
+4. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/page.tsx` — landing page
+- `app/login`, `app/register` — auth pages
+- `app/(protected)/dashboard`, `app/(protected)/history` — the two main app pages, gated by `app/(protected)/layout.tsx`
+- `app/api/expenses/route.ts` — GET/POST/DELETE for expenses and budgets, diffed against existing DB rows on save
+- `app/components/` — UI components (`Expenses`, `ExpensesChart`, `ExpensesForm`, `HistoryChart`, `YearStepper`, etc.)
+- `lib/` — shared types (`types.ts`), auth helper (`auth.ts`), style constants and utilities (`utils.ts`)
+- `db/` — the Postgres connection pool (`db.ts`) and raw SQL migration files (`sql-migrations/`)
