@@ -77,6 +77,23 @@ const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
   const absoluteDifferences = Math.max(1, ...differences.map((d) => Math.abs(d)));
   //console.log(expenses)
 
+  const activeMonths = monthNumbers.filter(
+    (m) => expensesByMonth.has(m) && budgetsByMonth.has(m)
+  );
+  const activeMonthsCount = activeMonths.length;
+
+  const totalExpensesYTD = expensesByMonthArray.reduce((sum, v) => sum + v, 0);
+  const totalSavingsForActiveMonths = activeMonths.reduce(
+    (sum, m) => sum + differences[m - 1],
+    0
+  );
+  const averageMonthlySpending =
+    activeMonthsCount > 0 ? totalExpensesYTD / activeMonthsCount : 0;
+  const averageMonthlySavings =
+    activeMonthsCount > 0 ? totalSavingsForActiveMonths / activeMonthsCount : 0;
+
+  const formatCurrency = (n: number) => (n < 0 ? "-$" : "$") + Math.round(Math.abs(n));
+
 
   const budgetVsExpensesData = {
     labels,
@@ -183,6 +200,20 @@ const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
   return (
     <div className="flex flex-col gap-1">
       <YearStepper year={selectedYear} setYear={setSelectedYear} />
+      <div className={cn(cardStyles, "p-4", "grid grid-cols-3 gap-4 text-center")}>
+        <div>
+          <p className="text-xs text-muted-foreground">Total Expenses YTD</p>
+          <p className="text-lg font-medium">{formatCurrency(totalExpensesYTD)}</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground">Avg Monthly Spending</p>
+          <p className="text-lg font-medium">{formatCurrency(averageMonthlySpending)}</p>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground">Avg Monthly Savings</p>
+          <p className="text-lg font-medium">{formatCurrency(averageMonthlySavings)}</p>
+        </div>
+      </div>
       <div className={cn(cardStyles, "h-100", "p-4", "flex flex-col gap-2")}>
         <p className="text-sm font-medium text-center">Budget vs Expenses</p>
         <div className="relative flex-1">
