@@ -43,9 +43,12 @@ export default function LandingPage() {
         </div>
       </section>
       <h2 className="font-medium text-center">What is this?</h2>
-      <img src="/budget-vis-next-snapshot.PNG" alt="Budget Viz dashboard showing expenses tracked against a monthly budget" />
+      <img
+        src="/budget-vis-next-snapshot.PNG"
+        alt="Budget Viz dashboard showing expenses tracked against a monthly budget"
+        className={cn(cardStyles, "flex flex-col gap-2 p-4")}
+      />
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
-        
         <p className="text-sm text-muted-foreground">
           Budget Viz is a place for you to efficiently keep track of your
           expenses month by month without having to link to external accounts.
@@ -55,9 +58,8 @@ export default function LandingPage() {
           only the most important metrics and statistics.
         </p>
       </section>
-
+      <h2 className="font-medium text-center">Why use it?</h2>
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
-        <h2 className="font-medium">Why use it?</h2>
         <p className="text-sm text-muted-foreground">
           Many budgeting apps are feature-rich, providing complex visualizations
           and tools for every type of budgeting strategy. This can be a
@@ -71,9 +73,8 @@ export default function LandingPage() {
           keystrokes per action.
         </p>
       </section>
-
+      <h2 className="font-medium text-center">How does it work?</h2>
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
-        <h2 className="font-medium">How does it work?</h2>
         <ol className="flex flex-col gap-1 text-sm text-muted-foreground list-decimal list-inside">
           <li>Pick a month.</li>
           <li>
