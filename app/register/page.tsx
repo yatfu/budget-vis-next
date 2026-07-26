@@ -5,9 +5,9 @@ import { authenticate } from "@/lib/auth";
 export default async function Register() {
   const userId = await authenticate();
   if (userId) {
-    redirect('/dashboard');
+    redirect("/dashboard");
   }
   return (
-    <RegisterForm />
+      <RegisterForm /> // registerForm in seperate client component
   );
 }

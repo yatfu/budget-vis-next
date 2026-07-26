@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Expense } from "./types";
 
 // merges/dedupes tailwind classes
 export function cn(...inputs: ClassValue[]) {

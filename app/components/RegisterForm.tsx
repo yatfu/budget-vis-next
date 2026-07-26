@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { register } from "../actions/register";
 import { cn, inputStyles, buttonBase, buttonVariants, buttonSizes, cardStyles } from "@/lib/utils";
 import type { RegisterState } from "@/lib/types";
+import Link from "next/link";
 
 export default function RegisterForm() {
   const [state, formAction] = useActionState<RegisterState, FormData>(register, {
@@ -30,6 +31,16 @@ export default function RegisterForm() {
 
         <button type="submit" className={cn(buttonBase, buttonVariants.default, buttonSizes.default)}>Register</button>
         {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
+        <Link
+        href="/login"
+        className={cn(
+          buttonBase,
+          buttonVariants.secondary,
+          buttonSizes.default
+        )}
+      >
+        Login
+      </Link>
       </form>
     </div>
   );
