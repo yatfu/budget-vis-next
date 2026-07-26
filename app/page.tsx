@@ -42,9 +42,10 @@ export default function LandingPage() {
           </a>
         </div>
       </section>
-
+      <h2 className="font-medium text-center">What is this?</h2>
+      <img src="/budget-vis-next-snapshot.PNG" alt="Budget Viz dashboard showing expenses tracked against a monthly budget" />
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
-        <h2 className="font-medium">What is this?</h2>
+        
         <p className="text-sm text-muted-foreground">
           Budget Viz is a place for you to efficiently keep track of your
           expenses month by month without having to link to external accounts.
