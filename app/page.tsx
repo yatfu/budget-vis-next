@@ -66,7 +66,7 @@ export default function LandingPage() {
         </p>
         <p className="text-sm text-muted-foreground">
           Budget Viz is an attempt to solve this issue through its design
-          philosophy, simplifying the interface, and minimizing the amount of taps, clicks, and
+          philosophy by simplifying the interface and minimizing the amount of taps, clicks, and
           keystrokes per action.
         </p>
       </section>
