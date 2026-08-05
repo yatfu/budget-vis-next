@@ -62,14 +62,11 @@ export default function LandingPage() {
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
         <p className="text-sm text-muted-foreground">
           Many budgeting apps are feature-rich, providing complex visualizations
-          and tools for every type of budgeting strategy. This can be a
-          disservice to the user by being distracting, giving too many options,
-          and increasing friction when navigating through the app.
+          and tools for every type of budgeting strategy. This increases friction when viewing and using the app.
         </p>
         <p className="text-sm text-muted-foreground">
           Budget Viz is an attempt to solve this issue through its design
-          philosophy, simplifying the interface, providing clarity through its
-          color scheme, and minimizing the amount of taps, clicks, and
+          philosophy, simplifying the interface, and minimizing the amount of taps, clicks, and
           keystrokes per action.
         </p>
       </section>
@@ -78,7 +75,7 @@ export default function LandingPage() {
         <ol className="flex flex-col gap-1 text-sm text-muted-foreground list-decimal list-inside">
           <li>Pick a month.</li>
           <li>
-            Add expenses as they happen: a label and an amount, nothing else.
+            Two ways to use the app: either add expenses as they happen, or your total planned amount for that expense.
           </li>
           <li>Set a budget for that month.</li>
           <li>Click save.</li>

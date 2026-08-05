@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { pool } from "@/db/db";
 import { cache } from "react";
 
-export const authenticate = cache(async () => {
+export const authenticate = cache(async () => { // cache works because this is server side React, so it's not cached on front end
   try {
     const sessionId = (await cookies()).get("session")?.value;
     console.log('Authenticating...')
