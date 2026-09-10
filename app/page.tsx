@@ -12,10 +12,9 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col gap-3 py-15">
       <section className="flex flex-col items-center gap-3 text-center">
-        <h1 className="text-3xl font-semibold">Budget Viz</h1>
+        <h1 className="text-3xl font-semibold">Budget Vis</h1>
         <p className="max-w-md text-muted-foreground">
-          A small tool for tracking what you spend against what you&apos;ve
-          budgeted, month by month.
+          A small tool for tracking expenditure month by month.
         </p>
         <div className="flex items-center gap-2 my-4">
           <Link
@@ -50,11 +49,11 @@ export default function LandingPage() {
       />
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
         <p className="text-sm text-muted-foreground">
-          Budget Viz is a place for you to efficiently keep track of your
+          Budget Vis is a place to efficiently keep track of your
           expenses month by month without having to link to external accounts.
         </p>
         <p className="text-sm text-muted-foreground">
-          From your inputs, Budget Viz provides clear, concise visualizations of
+          From your inputs, Budget Vis provides clear, concise visualizations of
           only the most important metrics and statistics.
         </p>
       </section>
@@ -62,11 +61,10 @@ export default function LandingPage() {
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
         <p className="text-sm text-muted-foreground">
           Many budgeting apps are feature-rich, providing complex visualizations
-          and tools for every type of budgeting strategy. This increases friction when viewing and using the app.
+          and tools for every type of budgeting strategy. This increases friction when viewing and using the app every day.
         </p>
         <p className="text-sm text-muted-foreground">
-          Budget Viz is an attempt to solve this issue through its design
-          philosophy by simplifying the interface and minimizing the amount of taps, clicks, and
+          Budget Vis is an attempt to solve this issue through its design by simplifying the interface and minimizing the amount of taps, clicks, and
           keystrokes per action.
         </p>
       </section>
