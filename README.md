@@ -16,23 +16,6 @@ A small tool for tracking what you spend against what you've budgeted, month by 
 - [PostgreSQL](https://www.postgresql.org/) via `pg` (raw SQL, no ORM)
 - [lucide-react](https://lucide.dev/) for icons
 
-## Getting started
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Set up a PostgreSQL database and point `DATABASE_URL` at it in a `.env` file:
-   ```
-   DATABASE_URL=postgres://user:password@host:port/dbname
-   ```
-3. Run the SQL files in `db/sql-migrations/` against that database, in order (`01_users.sql`, `02_expenses.sql`, `03_sessions.sql`, `04_budgets.sql`, `05_budgets_unique_constraint.sql`) — there's no migration runner yet, so apply them manually (e.g. via `psql`).
-4. Start the dev server:
-   ```bash
-   npm run dev
-   ```
-5. Open [http://localhost:3000](http://localhost:3000).
-
 ## Project structure
 
 - `app/page.tsx` — landing page

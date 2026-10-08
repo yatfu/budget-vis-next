@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Nav from "./components/Nav";
 import { authenticate } from "@/lib/auth";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Budget Visualizer",
@@ -31,10 +18,8 @@ export default async function RootLayout({
   const userId = await authenticate();
   
   return (
-    <html lang="en" className={cn("font-sans", "dark", "max-w-250 m-auto px-3", inter.variable)}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={cn("font-sans", "dark", "max-w-250 m-auto px-3")}>
+      <body className="antialiased">
         <Nav userId={userId} />
         {children}
       </body>

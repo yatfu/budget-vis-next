@@ -3,8 +3,9 @@ import { pool } from "@/db/db";
 import { cache } from "react";
 
 export const authenticate = cache(async () => { // cache works because this is server side React, so it's not cached on front end
+  // Let Next.js handle request-time rendering before catching database errors.
+  const sessionId = (await cookies()).get("session")?.value;
   try {
-    const sessionId = (await cookies()).get("session")?.value;
     console.log('Authenticating...')
 
     if (!sessionId) {
