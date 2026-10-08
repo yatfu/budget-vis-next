@@ -11,7 +11,7 @@ import {
   Legend,
   TooltipItem,
 } from "chart.js";
-import { Budget, Expense } from "@/lib/types";
+import { Budget } from "@/lib/types";
 import { cn, cardStyles } from "@/lib/utils";
 import YearStepper from "./YearStepper";
 
@@ -50,7 +50,7 @@ const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
   const budgetsByMonthArray: number[] = [];
 
   for (let i = 1; i < 13; i++) {
-    let amount: number | undefined = expensesByMonth.get(i);
+    const amount: number | undefined = expensesByMonth.get(i);
     if (amount) { // null = 0 in this case, but it's okay because the data is only used for display
       expensesByMonthArray.push(amount)
     }
@@ -60,7 +60,7 @@ const HistoryChart = ({ budgets, expenses }: HistoryChartProps) => {
   } 
 
   for (let i = 1; i < 13; i++) {
-    let amount: number | undefined = budgetsByMonth.get(i);
+    const amount: number | undefined = budgetsByMonth.get(i);
     if (amount) { // null = 0 in this case, but it's okay because the data is only used for display
       budgetsByMonthArray.push(amount)
     }

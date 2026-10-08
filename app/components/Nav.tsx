@@ -6,7 +6,7 @@ import { cn, buttonBase, buttonVariants, buttonSizes, borderless } from "@/lib/u
 import { usePathname } from "next/navigation";
 
 type Props = {
-  userId?: String;
+  userId?: string;
 };
 
 const navLinkStyles = cn(buttonBase, buttonVariants.ghost, buttonSizes.default, borderless);

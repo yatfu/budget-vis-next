@@ -1,4 +1,4 @@
-import { months, inputStyles, cn } from '@/lib/utils'
+import { inputStyles, cn } from '@/lib/utils'
 import YearStepper from './YearStepper'
 
 type DateSelectorProps = {

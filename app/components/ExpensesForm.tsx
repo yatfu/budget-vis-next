@@ -59,7 +59,7 @@ const ExpensesForm = ({
 
   const deleteExpense = (indexToRemove: number) => {
     const newExpenses = expenses.filter(
-      (element, index, array) => index !== indexToRemove
+      (element, index) => index !== indexToRemove
     );
     setExpenses(newExpenses);
   };

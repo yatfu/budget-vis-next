@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import {
   cn,
@@ -42,10 +43,13 @@ export default function LandingPage() {
         </div>
       </section>
       <h2 className="font-medium text-center">What is this?</h2>
-      <img
+      <Image
         src="/budget-vis-next-snapshot.PNG"
+        width={1104}
+        height={1002}
+        sizes="(max-width: 1000px) 100vw, 1000px"
         alt="Budget Viz dashboard showing expenses tracked against a monthly budget"
-        className={cn(cardStyles, "flex flex-col gap-2 p-4")}
+        className={cn(cardStyles, "h-auto w-full p-4")}
       />
       <section className={cn(cardStyles, "flex flex-col gap-2 p-4")}>
         <p className="text-sm text-muted-foreground">

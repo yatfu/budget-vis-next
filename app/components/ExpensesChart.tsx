@@ -1,4 +1,4 @@
-import { Doughnut, Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { getRemainingBudget } from "@/lib/utils";
 
@@ -63,12 +63,11 @@ const ExpensesChart = ({
     id: "centerText",
     afterDraw(chart: ChartJS) {
       const { ctx } = chart;
-      const arc = chart.getDatasetMeta(0).data[0] as any;
+      const arc = chart.getDatasetMeta(0).data[0];
       if (!arc) return;
       const { x, y } = arc;
 
       const style = getComputedStyle(document.documentElement);
-      const foreground = style.getPropertyValue("--foreground");
       const muted = style.getPropertyValue("--muted-foreground");
 
       ctx.save();

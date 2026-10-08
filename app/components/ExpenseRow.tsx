@@ -8,7 +8,6 @@ export default function ExpenseRow({
   index,
   onAddAmount,
   onChangeExpense,
-  onAddExpense,
   onDeleteExpense,
 }: ExpenseRowProps) {
   const [amount, setAmount] = useState(0);

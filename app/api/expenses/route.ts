@@ -124,12 +124,12 @@ export async function POST(request: Request) {
   );
 
   // generate arrays of modified expenses through comparison
-  let expensesInserts: Expense[] = [];
-  let expensesUpdates: Expense[] = [];
-  let expensesDeletes: number[] = [];
+  const expensesInserts: Expense[] = [];
+  const expensesUpdates: Expense[] = [];
+  const expensesDeletes: number[] = [];
 
-  let budgetsInserts: Budget[] = [];
-  let budgetsUpdates: Budget[] = [];
+  const budgetsInserts: Budget[] = [];
+  const budgetsUpdates: Budget[] = [];
 
   for (const [id, expense] of newExpensesMap) {
     // expense inserts
@@ -172,12 +172,12 @@ export async function POST(request: Request) {
 
   // generate SQL using modified expenses
   // simple loop to convert then push
-  let expensesInsertSQL: Query[] = [];
-  let expensesUpdateSQL: Query[] = [];
-  let expensesDeleteSQL: Query[] = [];
+  const expensesInsertSQL: Query[] = [];
+  const expensesUpdateSQL: Query[] = [];
+  const expensesDeleteSQL: Query[] = [];
 
-  let budgetsInsertSQL: Query[] = [];
-  let budgetsUpdateSQL: Query[] = [];
+  const budgetsInsertSQL: Query[] = [];
+  const budgetsUpdateSQL: Query[] = [];
 
   for (const insert of expensesInserts) {
     const sql = `
@@ -240,12 +240,12 @@ export async function POST(request: Request) {
   }
   // send queries to database
 
-  let expensesInsertResults = [];
-  let expensesUpdateResults = [];
-  let expensesDeleteResults = [];
+  const expensesInsertResults = [];
+  const expensesUpdateResults = [];
+  const expensesDeleteResults = [];
 
-  let budgetsInsertResults = [];
-  let budgetsUpdateResults = [];
+  const budgetsInsertResults = [];
+  const budgetsUpdateResults = [];
 
   // pools connections
 
@@ -294,7 +294,7 @@ export async function POST(request: Request) {
   });
 }
 
-export async function GET(req: Request) {
+export async function GET() {
   const userId = await authenticate();
   let checkedUserId: number;
 
@@ -335,7 +335,7 @@ export async function GET(req: Request) {
  * ONLY USED WHEN USER WANTS TO CLEAR THEIR DATA
  *
  */
-export async function DELETE(req: Request) {
+export async function DELETE() {
   const userId = await authenticate();
   let checkedUserId: number;
 
@@ -362,7 +362,7 @@ export async function DELETE(req: Request) {
 /**
  * HELPER FUNCTION checks user_id for validity
  */
-const checkUserId = (id: any) => {
+const checkUserId = (id: unknown) => {
   if (!id) {
     // error handling: null
     throw new Error("user_id is required");
@@ -375,10 +375,14 @@ const checkUserId = (id: any) => {
   return parsedUserId;
 };
 
-function isNewExpense(expense: any): boolean {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function isNewExpense(expense: unknown): boolean {
   // helper function to check request body for correct type. used in POST function
   return (
-    expense &&
+    isRecord(expense) &&
     (typeof expense.id === "string" || typeof expense.id === "number") &&
     typeof expense.label === "string" &&
     typeof expense.amount === "number" &&
@@ -387,10 +391,10 @@ function isNewExpense(expense: any): boolean {
   );
 }
 
-function isNewBudget(budget: any): boolean {
+function isNewBudget(budget: unknown): boolean {
   // helper function to check request body for correct type. used in POST function
   return (
-    budget &&
+    isRecord(budget) &&
     (typeof budget.id === "string" || typeof budget.id === "number") &&
     typeof budget.amount === "number" &&
     typeof budget.month === "number" &&

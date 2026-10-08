@@ -40,10 +40,9 @@ export async function register(
   // Insert new user into the database
   const sql = `INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id`;
   const values = [username, passwordHash];
-  let result;
   try {
-    result = await pool.query(sql, values);
-  } catch (error) {
+    await pool.query(sql, values);
+  } catch {
     return {
       success: false,
       userId: null,
